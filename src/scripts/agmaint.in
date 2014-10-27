@@ -120,7 +120,7 @@ status=$?
 output "apt-get autoclean completed with exit code: "$status $status
 std_cmd_err_handler $status
 
-apt-get chock
+apt-get check
 status=$?
 output "apt-get check completed with exit code: "$status $status
 std_cmd_err_handler $status
