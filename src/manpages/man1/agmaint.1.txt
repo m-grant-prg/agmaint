@@ -5,9 +5,9 @@ agmaint [OPTION]
 DESCRIPTION
 A script to automate running of daily apt-get maintenance commands.
 OPTIONS
--h  prints usage information
+-h, --help  prints usage information
 
--V  prints version information
+-V, --version  prints version information
 EXIT STATUS
 0
 if OK,
