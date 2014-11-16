@@ -35,6 +35,10 @@
 ## 27/10/2014	MG	1.0.1	Created.				##
 ## 13/11/2014	MG	1.0.2	Switched from getopts to GNU getopt to	##
 ##				allow long options.			##
+## 16/11/2014	MG	1.0.3	Modify getopt processing to allow for	##
+##				FreeBSD's quirk of 2 different getopt	##
+##				programs. See comments at the start of	##
+##				"Main"					##
 ##									##
 ##########################################################################
 
@@ -42,8 +46,16 @@
 ## Init variables ##
 ####################
 script_exit_code=0
-version="1.0.2"			# set version variable
+osname=$(uname -s)		# Get system name for OS differentiation
+version="1.0.3"			# set version variable
 outputprefix="agmaint: "
+
+# See getopt comments at the start of "Main"
+binlocation=""			# Path to bin directory
+if [ $osname = "FreeBSD" ]
+then
+	binlocation=@bindir@"/"
+fi
 
 ###############
 ## Functions ##
@@ -91,7 +103,15 @@ trap trap_exit SIGHUP SIGINT SIGTERM
 ## Main ##
 ##########
 # Process command line arguments with GNU getopt.
-GETOPTTEMP=`getopt -o hV --long help,version -n "$0" -- "$@"`
+# (FreeBSD includes, out of the box, a dodgy, feature lacking getopt program
+# installed in /usr/bin. A GNU compatable getopt package is available to install
+# and this gets installed in the bindir, ie /usr/local/bin. This means that the
+# dodgy getopt version is always found first on the PATH. In order to invoke the
+# correct program, $binlocation, (from Makefile bindir), is inserted in the command
+# line below to specify the full path). (Linux GNU getopt can be found on PATH so
+# binlocation ="").
+
+GETOPTTEMP=`"$binlocation"getopt -o hV --long help,version -n "$0" -- "$@"`
 std_cmd_err_handler $?
 
 eval set -- "$GETOPTTEMP"
@@ -104,10 +124,12 @@ do
 		echo "	-h or --help displays usage information"
 		echo "	OR"
 		echo "	-V or --version displays version information"
+		shift
 		script_exit_code=0
 		script_exit
 		;;
 	-V|--version)	echo "$0 version "$version
+		shift
 		script_exit_code=0
 		script_exit
 		;;
