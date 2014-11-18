@@ -39,6 +39,8 @@
 ##				FreeBSD's quirk of 2 different getopt	##
 ##				programs. See comments at the start of	##
 ##				"Main"					##
+## 18/11/2014	MG	1.0.4	Change FreeBSD specifics to *BSD and	##
+##				change Linux to be the default.		##
 ##									##
 ##########################################################################
 
@@ -47,15 +49,17 @@
 ####################
 script_exit_code=0
 osname=$(uname -s)		# Get system name for OS differentiation
-version="1.0.3"			# set version variable
+version="1.0.4"			# set version variable
 outputprefix="agmaint: "
 
 # See getopt comments at the start of "Main"
-binlocation=""			# Path to bin directory
-if [ $osname = "FreeBSD" ]
-then
-	binlocation=@bindir@"/"
-fi
+case $osname in
+*BSD)	binlocation=@bindir@"/"
+	;;
+# Linux)	Allow fall through for now as the defaults are linux.
+*)	binlocation=""
+	;;
+esac
 
 ###############
 ## Functions ##
