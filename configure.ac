@@ -16,6 +16,8 @@
 ## Date		Author	Version	Description				##
 ##									##
 ## 27/10/2014	MG	1.0.1	Started versioning of this script.	##
+## 18/11/2014	MG	1.0.2	Re-structure to cope with OS		##
+##				differences. Add check for GNU getopt.	##
 ##									##
 ##########################################################################
 
@@ -29,7 +31,27 @@ AC_CONFIG_FILES([Makefile
 		src/scripts/Makefile
 		src/manpages/man1/Makefile])
 
+AC_CANONICAL_HOST
+
 # Checks for programs.
+AC_MSG_NOTICE([checking for required $host_os specific programs])
+case $host_os in
+	*bsd*)	AC_MSG_NOTICE([using $host_os...])
+		AC_CHECK_PROG(GETOPT, getopt, yes, no, path = '/usr/local/bin')
+		if test "x$GETOPT" = "xno" ; then
+			AC_MSG_ERROR([getopt not found])
+		fi
+		;;
+	# linux*)	Allow fall through for now as the defaults are linux.
+	*)	AC_MSG_NOTICE([using defaults...])
+		AC_CHECK_PROG(GETOPT, getopt, yes, no)
+		if test "x$GETOPT" = "xno" ; then
+			AC_MSG_ERROR([getopt not found])
+		fi
+		;;
+esac
+
+AC_MSG_NOTICE([checking for required generic programs])
 
 AC_CHECK_PROG(BASH, bash, yes, no)
 if test "x$BASH" = "xno" ; then
@@ -44,6 +66,11 @@ fi
 AC_CHECK_PROG(TXT2MAN, txt2man, yes, no)
 if test "x$TXT2MAN" = "xno" ; then
    	AC_MSG_ERROR([txt2man not found])
+fi
+
+AC_CHECK_PROG(APT_GET, apt-get, yes, no)
+if test "x$APT_GET" = "xno" ; then
+   	AC_MSG_ERROR([apt-get not found])
 fi
 
 # Checks for libraries.
