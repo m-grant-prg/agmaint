@@ -41,6 +41,7 @@
 ##				"Main"					##
 ## 18/11/2014	MG	1.0.4	Change FreeBSD specifics to *BSD and	##
 ##				change Linux to be the default.		##
+## 25/11/2014	MG	1.0.5	Add overall package version to -V.	##
 ##									##
 ##########################################################################
 
@@ -48,9 +49,10 @@
 ## Init variables ##
 ####################
 script_exit_code=0
-osname=$(uname -s)		# Get system name for OS differentiation
-version="1.0.4"			# set version variable
+osname=$(uname -s)			# Get system name for OS differentiation
+version="1.0.5"				# set version variable
 outputprefix="agmaint: "
+packageversion=@pkgversion@		# Version of the complete package
 
 # See getopt comments at the start of "Main"
 case $osname in
@@ -124,7 +126,8 @@ std_cmd_err_handler $?
 while true
 do
 	case "$1" in
-	-h|--help)	echo "Usage is $0 [options]"
+	-h|--help)
+		echo "Usage is $0 [options]"
 		echo "	-h or --help displays usage information"
 		echo "	OR"
 		echo "	-V or --version displays version information"
@@ -132,7 +135,9 @@ do
 		script_exit_code=0
 		script_exit
 		;;
-	-V|--version)	echo "$0 version "$version
+	-V|--version)
+		echo "$0 Script version "$version
+		echo "$0 Package version "$packageversion
 		shift
 		script_exit_code=0
 		script_exit

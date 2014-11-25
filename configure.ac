@@ -18,12 +18,16 @@
 ## 27/10/2014	MG	1.0.1	Started versioning of this script.	##
 ## 18/11/2014	MG	1.0.2	Re-structure to cope with OS		##
 ##				differences. Add check for GNU getopt.	##
+## 25/11/2014	MG	1.0.3	Add support for passing overall package	##
+##				version to Makefiles.			##
 ##									##
 ##########################################################################
 
 
 AC_PREREQ([2.65])
 AC_INIT([agmaint apt-get Maintenance Commands Script], m4_esyscmd([git describe --always 1>/dev/null 2>/dev/null && git describe --always | tr -d '\n' || echo 'Pre-Release' | tr -d '\n']), [m.grant.prg@gmail.com], [agmaint])
+
+AC_SUBST(pkgversion, m4_esyscmd([git describe --always 1>/dev/null 2>/dev/null && git describe --always | tr -d '\n' || echo 'Pre-Release' | tr -d '\n']))
 
 AM_INIT_AUTOMAKE
 
