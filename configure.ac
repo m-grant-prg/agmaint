@@ -1,4 +1,3 @@
-#! /usr/bin/env bash
 ##########################################################################
 ##									##
 ## Script ID: ./configure.ac						##
@@ -20,6 +19,7 @@
 ##				differences. Add check for GNU getopt.	##
 ## 25/11/2014	MG	1.0.3	Add support for passing overall package	##
 ##				version to Makefiles.			##
+## 29/11/2014	MG	1.0.4	Remove redundant hashpling.		##
 ##									##
 ##########################################################################
 
