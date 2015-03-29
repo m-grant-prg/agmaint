@@ -1,3 +1,8 @@
+2015-03-29 v 1.0.6 Mark Grant <m.grant.prg@gmail.com>
+	*  Remove redundant AutoConf hashpling.
+	Remove BSD support.
+	agmaint script now at version 1.0.6.
+
 2014-11-25 v 1.0.5 Mark Grant <m.grant.prg@gmail.com>
 	*  Add support for including overall package version in script --version.
 	agmaint script now at version 1.0.5.
