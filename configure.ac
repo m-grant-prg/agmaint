@@ -20,6 +20,7 @@
 ## 25/11/2014	MG	1.0.3	Add support for passing overall package	##
 ##				version to Makefiles.			##
 ## 29/11/2014	MG	1.0.4	Remove redundant hashpling.		##
+## 26/06/2015	MG	1.0.5	Remove BSD support.			##
 ##									##
 ##########################################################################
 
@@ -35,28 +36,8 @@ AC_CONFIG_FILES([Makefile
 		src/scripts/Makefile
 		src/manpages/man1/Makefile])
 
-AC_CANONICAL_HOST
-
 # Checks for programs.
-AC_MSG_NOTICE([checking for required $host_os specific programs])
-case $host_os in
-	*bsd*)	AC_MSG_NOTICE([using $host_os...])
-		AC_CHECK_PROG(GETOPT, getopt, yes, no, path = '/usr/local/bin')
-		if test "x$GETOPT" = "xno" ; then
-			AC_MSG_ERROR([getopt not found])
-		fi
-		;;
-	# linux*)	Allow fall through for now as the defaults are linux.
-	*)	AC_MSG_NOTICE([using defaults...])
-		AC_CHECK_PROG(GETOPT, getopt, yes, no)
-		if test "x$GETOPT" = "xno" ; then
-			AC_MSG_ERROR([getopt not found])
-		fi
-		;;
-esac
-
 AC_MSG_NOTICE([checking for required generic programs])
-
 AC_CHECK_PROG(BASH, bash, yes, no)
 if test "x$BASH" = "xno" ; then
    	AC_MSG_ERROR([bash not found])
@@ -75,6 +56,11 @@ fi
 AC_CHECK_PROG(APT_GET, apt-get, yes, no)
 if test "x$APT_GET" = "xno" ; then
    	AC_MSG_ERROR([apt-get not found])
+fi
+
+AC_CHECK_PROG(GETOPT, getopt, yes, no)
+if test "x$GETOPT" = "xno" ; then
+	AC_MSG_ERROR([getopt not found])
 fi
 
 # Checks for libraries.
