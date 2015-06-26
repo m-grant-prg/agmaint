@@ -1,3 +1,6 @@
+2015-06-26 v 1.0.7 Mark Grant <m.grant.prg@gmail.com>
+	*  Remove Autoconf BSD support.
+
 2015-03-29 v 1.0.6 Mark Grant <m.grant.prg@gmail.com>
 	*  Remove redundant AutoConf hashpling.
 	Remove BSD support.

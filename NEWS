@@ -1,3 +1,6 @@
+Release 1.0.7 2015-06-26
+Remove Autoconf BSD support.
+
 Release 1.0.6 2015-03-29
 Remove redundant AutoConf hashpling.
 Remove BSD support.
