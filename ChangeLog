@@ -1,3 +1,6 @@
+2015-09-28 v 1.0.8 Mark Grant <m.grant.prg@gmail.com>
+	*  Change to conform to AutoTools Template version 1.0.4.
+
 2015-06-26 v 1.0.7 Mark Grant <m.grant.prg@gmail.com>
 	*  Remove Autoconf BSD support.
 
