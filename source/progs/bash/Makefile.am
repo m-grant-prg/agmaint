@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 ##########################################################################
 ##									##
-## Script ID: src/scripts/Makefile.am					##
+## Script ID: source/progs/bash/Makefile.am				##
 ## Author: Mark Grant							##
 ##									##
 ## Purpose:								##
@@ -20,6 +20,8 @@
 ##				overall package version.		##
 ## 28/09/2015	MG	1.0.3	Change to conform to AutoTools Template	##
 ##				version 1.0.4.				##
+## 19/10/2015	MG	1.0.4	Restructure to conform to AutoTools	##
+##				General Template v1.0.5.		##
 ##									##
 ##########################################################################
 

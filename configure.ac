@@ -26,10 +26,12 @@
 ## 26/06/2015	MG	1.0.5	Remove BSD support.			##
 ## 28/09/2015	MG	1.0.6	Change to conform to AutoTools Template	##
 ##				version 1.0.4.				##
+## 19/10/2015	MG	1.0.7	Restructure to conform to AutoTools	##
+##				General Template v1.0.5.		##
 ##									##
 ##########################################################################
 
-AC_REVISION([$Revision: 1.0.6 $])
+AC_REVISION([$Revision: 1.0.7 $])
 
 AC_PREREQ([2.65])
 
@@ -37,7 +39,7 @@ AC_PREREQ([2.65])
 #########################
 ##
 ## The following two macros use git to provide versioning information.
-## If git is not intialised or no commit has been made, then 'Pre-Release'
+## If git is not initialised or no commit has been made, then 'Pre-Release'
 ## will be used.
 ## If no Tag has been created then just a commit identifier will be used.
 ## If a tag has been created then the most recent tag, plus number of commits
@@ -158,8 +160,8 @@ fi
 
 # Project Makefiles to create.
 AC_CONFIG_FILES([Makefile
-		src/scripts/Makefile
-		src/man/man1/Makefile])
+		source/progs/bash/Makefile
+		source/man/man1/Makefile])
 
 AC_OUTPUT
 
