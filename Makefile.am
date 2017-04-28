@@ -20,8 +20,9 @@
 #				version 1.0.4.				#
 # 19/10/2015	MG	1.0.3	Restructure to conform to AutoTools	#
 #				General Template v1.0.5.		#
+# 28/04/2017	MG	1.0.4	Move man page to man section 8.		#
 #									#
 #########################################################################
 
 
-SUBDIRS = source/progs/bash source/man/man1
+SUBDIRS = source/progs/bash source/man/man8

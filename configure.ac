@@ -28,10 +28,11 @@
 #				version 1.0.4.				#
 # 19/10/2015	MG	1.0.7	Restructure to conform to AutoTools	#
 #				General Template v1.0.5.		#
+# 28/04/2017	MG	1.0.8	Move man page to man section 8.		#
 #									#
 #########################################################################
 
-AC_REVISION([$Revision: 1.0.7 $])
+AC_REVISION([$Revision: 1.0.8 $])
 
 AC_PREREQ([2.65])
 
@@ -161,7 +162,7 @@ fi
 # Project Makefiles to create.
 AC_CONFIG_FILES([Makefile
 		source/progs/bash/Makefile
-		source/man/man1/Makefile])
+		source/man/man8/Makefile])
 
 AC_OUTPUT
 
