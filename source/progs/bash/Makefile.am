@@ -22,6 +22,7 @@
 #				version 1.0.4.				#
 # 19/10/2015	MG	1.0.4	Restructure to conform to AutoTools	#
 #				General Template v1.0.5.		#
+# 28/04/2017	MG	1.0.5	Rename source file extension .sh.in	#
 #									#
 #########################################################################
 
@@ -29,17 +30,17 @@
 agmaint: Makefile
 	mkdir -p $(@D)
 	rm -f $@ $@.tmp
-	test -f ./$@.in || srcdir=$(srcdir)/; \
-	$(edit) $${srcdir}$(@F).in > $@.tmp
+	test -f ./$@.sh.in || srcdir=$(srcdir)/; \
+	$(edit) $${srcdir}$(@F).sh.in > $@.tmp
 
 	mv $@.tmp $@
 
 	chmod a+x $@
 
-agmaint: $(srcdir)/agmaint.in
+agmaint: $(srcdir)/agmaint.sh.in
 
 sbin_SCRIPTS = agmaint
 
-EXTRA_DIST = $(srcdir)/agmaint.in
+EXTRA_DIST = $(srcdir)/agmaint.sh.in
 
 CLEANFILES = *.tmp agmaint
