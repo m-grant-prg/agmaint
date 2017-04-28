@@ -1,3 +1,9 @@
+2017-04-28 v 1.0.10 Mark Grant <m.grant.prg@gmail.com>
+	*  Note conformity to atbre template v1.0.0.
+	Move man page to section 8.
+	Correct man page build - was ignoring output of $(edit).
+	agmaint script at version 1.0.6
+
 2015-10-19 v 1.0.9 Mark Grant <m.grant.prg@gmail.com>
 	*  Note conformity to AutoTools General Template v1.0.6.
 	Restructure to conform to AutoTools Template version 1.0.5.
