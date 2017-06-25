@@ -1,3 +1,7 @@
+2017-06-25 v 1.0.11 Mark Grant <m.grant.prg@gmail.com>
+	*  Enforce 80 column rule across project files.
+	agmaint script still at version 1.0.6
+
 2017-04-28 v 1.0.10 Mark Grant <m.grant.prg@gmail.com>
 	*  Note conformity to atbre template v1.0.0.
 	Move man page to section 8.
