@@ -2,7 +2,10 @@
 #########################################################################
 #									#
 # Script ID: source/man/man8/Makefile.am				#
-# Author: Mark Grant							#
+# Author: Copyright (C) 2014-2017  Mark Grant				#
+#									#
+# Released under the GPLv3 only.					#
+# SPDX-License-Identifier: GPL-3.0					#
 #									#
 # Purpose:								#
 # Automake script file to generate agmaint manual pages from source.	#
@@ -27,6 +30,7 @@
 #				target suffix. If the suffix is blank	#
 #				(foo.) or if there is no suffix (foo)	#
 #				then error out.				#
+# 01/12/2017	MG	1.0.6	Add SPDX license tags to source files.	#
 #									#
 #########################################################################
 

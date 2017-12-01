@@ -9,7 +9,10 @@
 #########################################################################
 #									#
 # Script ID: agmaint							#
-# Author: Mark Grant							#
+# Author: Copyright (C) 2014-2017  Mark Grant				#
+#									#
+# Released under the GPLv3 only.					#
+# SPDX-License-Identifier: GPL-3.0					#
 #									#
 # Purpose:								#
 # To simplify the running of daily apt-get maintenance commands.	#
@@ -43,6 +46,7 @@
 #				change Linux to be the default.		#
 # 25/11/2014	MG	1.0.5	Add overall package version to -V.	#
 # 29/03/2015	MG	1.0.6	Remove BSD support.			#
+# 01/12/2017	MG	1.0.7	Add SPDX license tags to source files.	#
 #									#
 #########################################################################
 
@@ -51,7 +55,7 @@
 ##################
 script_exit_code=0
 osname=$(uname -s)			# Get system name for OS differentiation
-version="1.0.6"				# set version variable
+version="1.0.7"				# set version variable
 outputprefix="agmaint: "
 packageversion=@pkgversion@		# Version of the complete package
 

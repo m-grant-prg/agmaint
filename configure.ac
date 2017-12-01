@@ -1,7 +1,10 @@
 #########################################################################
 #									#
 # Script ID: ./configure.ac						#
-# Author: Mark Grant							#
+# Author: Copyright (C) 2014-2017  Mark Grant				#
+#									#
+# Released under the GPLv3 only.					#
+# SPDX-License-Identifier: GPL-3.0					#
 #									#
 # Purpose:								#
 # Autoconfigure script file to configure agmaint project.		#
@@ -33,10 +36,11 @@
 #				multi-line.				#
 #				Fully populate sed variable		#
 #				substitution.				#
+# 01/12/2017	MG	1.0.9	Add SPDX license tags to source files.	#
 #									#
 #########################################################################
 
-AC_REVISION([$Revision: 1.0.8 $])
+AC_REVISION([$Revision: 1.0.9 $])
 
 AC_PREREQ([2.65])
 
