@@ -53,7 +53,6 @@
 # Init variables #
 ##################
 script_exit_code=0
-osname=$(uname -s)			# Get system name for OS differentiation
 version="1.0.8"				# set version variable
 outputprefix="agmaint: "
 packageversion=@pkgversion@		# Version of the complete package
