@@ -1,3 +1,11 @@
+Release 1.0.12 2017-12-05
+Adopt normal exit code policy; 0 on success, 1 on failure.
+Add SPDX license tags to source files.
+Add project-wide TODO file.
+Determine the manual section from the target file suffix. If the suffix is blank
+(foo.) or if there is no suffix (foo) then error out.
+Update man page copyright span attribution.
+
 Release 1.0.11 2017-06-25
 Changes affect the source only.
 Enforce 80 column rule across project files.
