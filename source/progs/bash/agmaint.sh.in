@@ -19,11 +19,8 @@
 #									#
 # Syntax:	agmaint [ -h || --help || -V || --version ]		#
 #									#
-# Exit Codes:	0 & 64 - 113 as per C/C++ standard			#
-#		0 - success						#
-#		64 - Invalid arguments					#
-#		65 - File(s) already exist				#
-#		67 - trap received					#
+# Exit Codes:	0 - success						#
+#		1 - failure						#
 #									#
 # Further Info:								#
 #									#
@@ -47,6 +44,8 @@
 # 25/11/2014	MG	1.0.5	Add overall package version to -V.	#
 # 29/03/2015	MG	1.0.6	Remove BSD support.			#
 # 01/12/2017	MG	1.0.7	Add SPDX license tags to source files.	#
+# 05/12/2017	MG	1.0.8	Adopt standard script exit values; 0 on	#
+#				success, 1 on failure.			#
 #									#
 #########################################################################
 
@@ -55,7 +54,7 @@
 ##################
 script_exit_code=0
 osname=$(uname -s)			# Get system name for OS differentiation
-version="1.0.7"				# set version variable
+version="1.0.8"				# set version variable
 outputprefix="agmaint: "
 packageversion=@pkgversion@		# Version of the complete package
 
@@ -93,7 +92,7 @@ script_exit()
 # Standard trap exit function
 trap_exit()
 {
-script_exit_code=67
+script_exit_code=1
 output "Script terminating due to trap received." 1
 script_exit
 }
@@ -143,7 +142,7 @@ done
 # Script does not accept other arguments.
 if [ $# -gt 0 ]
 then
-	script_exit_code=64
+	script_exit_code=1
 	output "Invalid argument." 1
 	script_exit
 fi
