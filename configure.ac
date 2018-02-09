@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: ./configure.ac						#
-# Author: Copyright (C) 2014-2017  Mark Grant				#
+# Author: Copyright (C) 2014-2018  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -37,10 +37,12 @@
 #				Fully populate sed variable		#
 #				substitution.				#
 # 01/12/2017	MG	1.0.9	Add SPDX license tags to source files.	#
+# 09/02/2018	MG	1.0.10	Shorten directory names to reduce	#
+#				overall path length.			#
 #									#
 #########################################################################
 
-AC_REVISION([$Revision: 1.0.9 $])
+AC_REVISION([$Revision: 1.0.10 $])
 
 AC_PREREQ([2.65])
 
@@ -198,8 +200,8 @@ fi
 
 # Project Makefiles to create.
 AC_CONFIG_FILES([Makefile
-		source/progs/bash/Makefile
-		source/man/man8/Makefile])
+		src/prg/bash/Makefile
+		src/man/8/Makefile])
 
 AC_OUTPUT
 

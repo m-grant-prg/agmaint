@@ -25,8 +25,10 @@
 #				General Template v1.0.5.		#
 # 28/04/2017	MG	1.0.4	Move man page to man section 8.		#
 # 01/12/2017	MG	1.0.5	Add SPDX license tags to source files.	#
+# 09/02/2018	MG	1.0.6	Shorten directory names to reduce	#
+#				overall path length.			#
 #									#
 #########################################################################
 
 
-SUBDIRS = source/progs/bash source/man/man8
+SUBDIRS = src/prg/bash src/man/8
