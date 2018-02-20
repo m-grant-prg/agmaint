@@ -1,3 +1,6 @@
+2018-02-20 v 1.0.14 Mark Grant <m.grant.prg@gmail.com>
+	*  Standardise on misc directory.
+
 2018-02-19 v 1.0.13 Mark Grant <m.grant.prg@gmail.com>
 	*  Add standard AutoTools bootstrap script.
 	Bring project structure up to latest standard.
