@@ -1,3 +1,10 @@
+2018-04-07 v 1.0.16 Mark Grant <m.grant.prg@gmail.com>
+	*  Change package versioning to a hard-coded configure value due to use
+	of source tarballs started with new use of github.
+	Add a make target srctarball to make a source tarball. This can be used
+	in the same way as github's source tarball enabling 1 package methodolgy
+	irrespective of source repository.
+
 2018-04-03 v 1.0.15 Mark Grant <m.grant.prg@gmail.com>
 	*  Improve README file.
 	Update to latest bootstrap.sh version v1.3.3
