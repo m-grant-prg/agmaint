@@ -70,7 +70,7 @@ AC_PREREQ([2.69])
 #
 ########################
 
-AC_INIT(apt-get Maintenance Commands Script, v1.0.20,
+AC_INIT(apt-get Maintenance Commands Script, v1.0.21,
 	m.grant.prg@gmail.com, agmaint)
 
 AC_SUBST(pkgversion, $PACKAGE_VERSION)
