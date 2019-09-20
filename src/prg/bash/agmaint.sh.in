@@ -51,6 +51,8 @@
 #				Adopt C shape for if, for, while etc.	#
 #				Refactor into functions.		#
 #				Standardise common functions.		#
+#				Use [[ ... ]] where appropriate.	#
+#				Use (( ... )) where appropriate.	#
 #									#
 #########################################################################
 
@@ -166,7 +168,7 @@ proc_CL()
 	done
 
 	# Script does not accept other arguments.
-	if [ $# -gt 0 ]; then
+	if (( $# )); then
 		output "Invalid argument." 1
 		script_exit 1
 	fi
