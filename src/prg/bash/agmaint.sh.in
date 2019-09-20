@@ -128,44 +128,56 @@ trap_exit()
 # Setup trap.
 trap trap_exit SIGHUP SIGINT SIGQUIT SIGTERM
 
+# Process command line arguments with GNU getopt.
+# Parameters -	$1 is the command line.
+# No return value.
+proc_CL()
+{
+	local GETOPTTEMP
+	local tmpGETOPTTEMP
+
+	tmpGETOPTTEMP="getopt -o hV --long help,version"
+	GETOPTTEMP=$($tmpGETOPTTEMP -n "$0" -- "$@")
+	std_cmd_err_handler $?
+
+	eval set -- "$GETOPTTEMP"
+	std_cmd_err_handler $?
+
+	while true; do
+		case "$1" in
+		-h|--help)
+			usage
+			shift
+			script_exit 0
+			;;
+		-V|--version)
+			printf "Script version %s\n" $version
+			printf "Package version %s\n" $packageversion
+			shift
+			script_exit 0
+			;;
+		--)	shift
+			break
+			;;
+		*)	output "Internal error." 1
+			script_exit 1
+			;;
+		esac
+	done
+
+	# Script does not accept other arguments.
+	if [ $# -gt 0 ]; then
+		output "Invalid argument." 1
+		script_exit 1
+	fi
+}
+
 
 ########
 # Main #
 ########
-# Process command line arguments with GNU getopt.
-GETOPTTEMP=`getopt -o hV --long help,version -n "$0" -- "$@"`
-std_cmd_err_handler $?
 
-eval set -- "$GETOPTTEMP"
-std_cmd_err_handler $?
-
-while true; do
-	case "$1" in
-	-h|--help)
-		usage
-		shift
-		script_exit 0
-		;;
-	-V|--version)
-		printf "Script version %s\n" $version
-		printf "Package version %s\n" $packageversion
-		shift
-		script_exit 0
-		;;
-	--)	shift
-		break
-		;;
-	*)	output "Internal error." 1
-		script_exit 1
-		;;
-	esac
-done
-
-# Script does not accept other arguments.
-if [ $# -gt 0 ]; then
-	output "Invalid argument." 1
-	script_exit 1
-fi
+proc_CL "$@"
 
 apt-get upgrade
 status=$?
