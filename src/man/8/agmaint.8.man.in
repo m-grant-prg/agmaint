@@ -9,17 +9,17 @@ OPTIONS
 
 -V, --version  prints version information
 EXIT STATUS
-0
-if OK,
-
-1
-on failure.
+0 - Success
+.br
+1 - General error
+.br
+64 - Command line usage error
 AUTHOR
 Written by Mark Grant.
 REPORTING BUGS
 Report bugs to <m.grant.prg@gmail.com>
 COPYRIGHT
-Copyright 2014-2017 Mark Grant.
+Copyright (C) 2014-2017, 2019 Mark Grant.
 .br
 License GPLv3+: GNU GPL version 3 or later
 .br
