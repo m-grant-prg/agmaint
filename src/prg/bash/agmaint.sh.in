@@ -47,6 +47,7 @@
 # 05/12/2017	MG	1.0.8	Adopt standard script exit values; 0 on	#
 #				success, 1 on failure.			#
 # 20/09/2019	MG	1.1.0	Do not hardcode outputprefix.		#
+#				Tidy variable scopes.			#
 #									#
 #########################################################################
 
@@ -54,9 +55,9 @@
 # Init variables #
 ##################
 script_exit_code=0
-version=1.1.0
+readonly version=1.1.0				# Script version
 readonly outputprefix="$(basename $0): "
-packageversion=@pkgversion@		# Version of the complete package
+readonly packageversion=@pkgversion@		# Package version
 
 #############
 # Functions #
