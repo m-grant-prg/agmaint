@@ -49,6 +49,8 @@
 # 20/09/2019	MG	1.1.0	Do not hardcode outputprefix.		#
 #				Tidy variable scopes.			#
 #				Adopt C shape for if, for, while etc.	#
+#				Refactor into functions.		#
+#				Standardise common functions.		#
 #									#
 #########################################################################
 
@@ -56,7 +58,6 @@
 ##################
 # Init variables #
 ##################
-script_exit_code=0
 readonly version=1.1.0				# Script version
 readonly outputprefix="$(basename $0): "
 readonly packageversion=@pkgversion@		# Package version
@@ -93,27 +94,29 @@ output()
 	fi
 }
 
-# Standard function to test command error ($1 is $?) and exit if non-zero
+# Standard function to test command error and exit if non-zero.
+# Parameters - 	$1 is the exit code, (normally $? from the preceeding command).
+# No return value.
 std_cmd_err_handler()
 {
-	if [ $1 != 0 ]; then
-		script_exit_code=$1
-		script_exit
+	if (( $1 )); then
+		script_exit $1
 	fi
 }
 
-# Standard function to cleanup and return exit code
+# Standard function to tidy up and return exit code.
+# Parameters - 	$1 is the exit code.
+# No return value.
 script_exit()
 {
-	exit $script_exit_code
+	exit $1
 }
 
 # Standard trap exit function
 trap_exit()
 {
-script_exit_code=1
 output "Script terminating due to trap received." 1
-script_exit
+script_exit 1
 }
 
 # Setup trap
@@ -134,31 +137,27 @@ while true; do
 	-h|--help)
 		usage
 		shift
-		script_exit_code=0
-		script_exit
+		script_exit 0
 		;;
 	-V|--version)
 		echo "$0 Script version "$version
 		echo "$0 Package version "$packageversion
 		shift
-		script_exit_code=0
-		script_exit
+		script_exit 0
 		;;
 	--)	shift
 		break
 		;;
-	*)	script_exit_code=1
-		output "Internal error." 1
-		script_exit
+	*)	output "Internal error." 1
+		script_exit 1
 		;;
 	esac
 done
 
 # Script does not accept other arguments.
 if [ $# -gt 0 ]; then
-	script_exit_code=1
 	output "Invalid argument." 1
-	script_exit
+	script_exit 1
 fi
 
 apt-get upgrade
@@ -181,5 +180,5 @@ status=$?
 output "apt-get autoremove completed with exit code: "$status $status
 std_cmd_err_handler $status
 
-script_exit_code=0
-script_exit
+script_exit 0
+
