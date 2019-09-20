@@ -147,8 +147,8 @@ while true; do
 		script_exit 0
 		;;
 	-V|--version)
-		echo "$0 Script version "$version
-		echo "$0 Package version "$packageversion
+		printf "Script version %s\n" $version
+		printf "Package version %s\n" $packageversion
 		shift
 		script_exit 0
 		;;
