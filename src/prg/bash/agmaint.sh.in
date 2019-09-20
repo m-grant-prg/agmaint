@@ -52,6 +52,7 @@
 #									#
 #########################################################################
 
+
 ##################
 # Init variables #
 ##################
@@ -60,9 +61,23 @@ readonly version=1.1.0				# Script version
 readonly outputprefix="$(basename $0): "
 readonly packageversion=@pkgversion@		# Package version
 
+
 #############
 # Functions #
 #############
+
+# -h --help output.
+# No parameters
+# No return value
+usage ()
+{
+cat << EOF
+Usage is $0 [OPTIONS]
+	[OPTIONS] are:-
+	-h or --help Displays usage information
+	-V or --version Displays version information
+EOF
+}
 
 # Output $1 to stdout or stderr depending on $2.
 output()
@@ -113,10 +128,7 @@ std_cmd_err_handler $?
 while true; do
 	case "$1" in
 	-h|--help)
-		echo "Usage is $0 [options]"
-		echo "	-h or --help displays usage information"
-		echo "	OR"
-		echo "	-V or --version displays version information"
+		usage
 		shift
 		script_exit_code=0
 		script_exit
