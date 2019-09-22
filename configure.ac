@@ -73,6 +73,7 @@
 #				probably use the source tarball rather	#
 #				than a dist tarball.			#
 # 22/09/2019	MG	1.1.0	Re-vamp to new standard layout.		#
+#				Remove v from package version string.	#
 #									#
 #########################################################################
 
@@ -92,7 +93,7 @@ AC_PREREQ([2.69])
 # can be used by ac output and / or the sed setup below to substitute bookmarks
 # in source files.
 #
-AC_INIT(apt-get Maintenance Commands Script, v1.0.21,
+AC_INIT(apt-get Maintenance Commands Script, 1.0.21,
 	m.grant.prg@gmail.com, agmaint)
 
 AC_MSG_NOTICE(initialisation and setup)
