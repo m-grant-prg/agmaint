@@ -39,8 +39,12 @@
 #				Add install of standard GNU files like	#
 #				AUTHORS, etc.				#
 #				Remove shebang.				#
+#				Add standard AMFLAGS statement.		#
 #									#
 #########################################################################
+
+
+ACLOCAL_AMFLAGS = -I m4
 
 
 SUBDIRS = src/prg/bash src/man/8
