@@ -37,11 +37,21 @@
 # 22/09/2019	MG	1.0.10	Change source tarball name to be the	#
 #				same as that in GitHub releases. This	#
 #				aids integrating with rpm generation.	#
+#				Add install of standard GNU files like	#
+#				AUTHORS, etc.				#
 #									#
 #########################################################################
 
 
 SUBDIRS = src/prg/bash src/man/8
+
+
+doc_DATA = AUTHORS ChangeLog COPYING NEWS README
+
+
+EXTRA_DIST = $(srcdir)/AUTHORS $(srcdir)/ChangeLog $(srcdir)/COPYING \
+		$(srcdir)/NEWS $(srcdir)/README
+
 
 srctarball:
 	@cwd="$${PWD}" && \
