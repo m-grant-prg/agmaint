@@ -1,3 +1,32 @@
+2019-09-24 v1.1.0 Mark Grant <m.grant.prg@gmail.com>
+	*  at: Update bootstrap.sh to v1.4.5
+	travis: Initial project setup
+	at: Set configure args for distcheck in top makefile
+	git: Update project root gitignore to v1.0.2
+	README: Update bootstrap.sh section
+	README: Add copyright statement
+	README: Make package install references generic
+	bash: Use bash path from configure in shebang
+	at: Add standard AMFLAGS statement to top level
+	at: Remove useless shebangs from Makefile.ams
+	at: Install standard GNU files eg AUTHOR etc
+	at: Change source tarball name to equal GitHub
+	at: Remove v from package version string
+	at: configure.ac: Re-vamp to new standard format
+	bash: Ensure script_exit() defined before use
+	bash: Use more meaningful exit codes
+	bash: Use (( ... )) for numerics
+	bash: Refactor CL processing into function
+	bash: Use printf AOT echo
+	bash: Standardise trap handling
+	bash: Standardise script_exit() and std_cmd_err_handler()
+	bash: Standadrise output()
+	Refactor help output into a function
+	Adopt C shape for if, for, while etc statements
+	Better define version variables
+	Do not hardcode outputprefix
+	agmaint script now at v1.1.0
+
 2018-10-31 v 1.0.21 Mark Grant <m.grant.prg@gmail.com>
 	*  srctarball to use -src- in filename
 	agmaint script still at v1.0.8
