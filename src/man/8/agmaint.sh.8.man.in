@@ -1,7 +1,7 @@
 NAME
-agmaint - agmaint script
+agmaint.sh - agmaint script
 SYNOPSIS
-agmaint [OPTION]
+agmaint.sh [OPTION]
 DESCRIPTION
 A script to automate running of daily apt-get maintenance commands.
 OPTIONS
@@ -19,7 +19,7 @@ Written by Mark Grant.
 REPORTING BUGS
 Report bugs to <m.grant.prg@gmail.com>
 COPYRIGHT
-Copyright (C) 2014-2017, 2019 Mark Grant.
+Copyright (C) 2014-2017, 2019, 2020 Mark Grant.
 .br
 License GPLv3+: GNU GPL version 3 or later
 .br

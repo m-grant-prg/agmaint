@@ -1,15 +1,15 @@
 #! @bashlocation@
 #########################################################################
 #									#
-#	agmaint is automatically generated,				#
+#	agmaint.sh is automatically generated,				#
 #		please do not modify!					#
 #									#
 #########################################################################
 
 #########################################################################
 #									#
-# Script ID: agmaint							#
-# Author: Copyright (C) 2014-2017, 2019  Mark Grant			#
+# Script ID: agmaint.sh							#
+# Author: Copyright (C) 2014-2017, 2019, 2020  Mark Grant		#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -17,7 +17,7 @@
 # Purpose:								#
 # To simplify the running of daily apt-get maintenance commands.	#
 #									#
-# Syntax:	agmaint [ -h || --help ] || [ -V || --version ]		#
+# Syntax:	agmaint.sh [ -h || --help ] || [ -V || --version ]	#
 #									#
 # Exit codes used:-							#
 # Bash standard Exit Codes:	0 - success				#
@@ -77,6 +77,7 @@
 #				Use more meaninful exit codes.		#
 #				Replace env hashpling with absolute	#
 #				bash path from configure.		#
+# 21/05/2020	MG	1.1.1	Change script to .sh extension.		#
 #									#
 #########################################################################
 
@@ -84,7 +85,7 @@
 ##################
 # Init variables #
 ##################
-readonly version=1.1.0				# Script version
+readonly version=1.1.1				# Script version
 readonly outputprefix="$(basename $0): "
 readonly packageversion=@pkgversion@		# Package version
 

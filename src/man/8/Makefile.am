@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: src/man/8/Makefile.am					#
-# Author: Copyright (C) 2014-2019  Mark Grant				#
+# Author: Copyright (C) 2014-2020  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -33,11 +33,12 @@
 # 09/02/2018	MG	1.0.7	Change file's header for new directory	#
 #				names.					#
 # 22/09/2019	MG	1.0.8	Remove shebang.				#
+# 21/05/2020	MG	1.0.9	Rename script to have .sh extension.	#
 #									#
 #########################################################################
 
 
-agmaint.8: Makefile
+agmaint.sh.8: Makefile
 	mkdir -p $(@D)
 	rm -f $@ $@.tmp
 	$(edit) $(srcdir)/$(@F).man.in > $@.tmp
@@ -56,10 +57,11 @@ agmaint.8: Makefile
 	txt2manwrap $(@F) $$section "agmaint Manual" $@.tmp $@
 	rm -f $@.tmp
 
-agmaint.8: $(srcdir)/agmaint.8.man.in
+agmaint.sh.8: $(srcdir)/agmaint.sh.8.man.in
 
-man_MANS = agmaint.8
+man_MANS = agmaint.sh.8
 
-EXTRA_DIST = $(srcdir)/agmaint.8.man.in
+EXTRA_DIST = $(srcdir)/agmaint.sh.8.man.in
 
-CLEANFILES = *.tmp agmaint.8
+CLEANFILES = *.tmp agmaint.sh.8
+

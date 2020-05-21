@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: src/prg/bash/Makefile.am					#
-# Author: Copyright (C) 2014-2019  Mark Grant				#
+# Author: Copyright (C) 2014-2020  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -29,24 +29,23 @@
 # 09/02/2018	MG	1.0.7	Change file's header for new directory	#
 #				names.					#
 # 22/09/2019	MG	1.0.8	Remove shebang.				#
+# 21/05/2020	MG	1.0.9	Change script extension .sh		#
 #									#
 #########################################################################
 
 
-agmaint: Makefile
+agmaint.sh: Makefile
 	mkdir -p $(@D)
 	rm -f $@ $@.tmp
 	test -f ./$@.sh.in || srcdir=$(srcdir)/; \
-	$(edit) $${srcdir}$(@F).sh.in > $@.tmp
-
+	$(edit) $${srcdir}$(@F).in > $@.tmp
 	mv $@.tmp $@
-
 	chmod a+x $@
+agmaint.sh: $(srcdir)/agmaint.sh.in
 
-agmaint: $(srcdir)/agmaint.sh.in
-
-sbin_SCRIPTS = agmaint
+sbin_SCRIPTS = agmaint.sh
 
 EXTRA_DIST = $(srcdir)/agmaint.sh.in
 
-CLEANFILES = *.tmp agmaint
+CLEANFILES = *.tmp agmaint.sh
+
