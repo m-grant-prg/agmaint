@@ -30,11 +30,12 @@
 #				names.					#
 # 22/09/2019	MG	1.0.8	Remove shebang.				#
 # 21/05/2020	MG	1.0.9	Change script extension .sh		#
+#				Add apt-key-scripts.sh			#
 #									#
 #########################################################################
 
 
-agmaint.sh: Makefile
+agmaint.sh apt-key-scripts.sh: Makefile
 	mkdir -p $(@D)
 	rm -f $@ $@.tmp
 	test -f ./$@.sh.in || srcdir=$(srcdir)/; \
@@ -42,10 +43,11 @@ agmaint.sh: Makefile
 	mv $@.tmp $@
 	chmod a+x $@
 agmaint.sh: $(srcdir)/agmaint.sh.in
+apt-key-scripts.sh: $(srcdir)/apt-key-scripts.sh.in
 
-sbin_SCRIPTS = agmaint.sh
+sbin_SCRIPTS = agmaint.sh apt-key-scripts.sh
 
-EXTRA_DIST = $(srcdir)/agmaint.sh.in
+EXTRA_DIST = $(srcdir)/agmaint.sh.in $(srcdir)/apt-key-scripts.sh.in
 
-CLEANFILES = *.tmp agmaint.sh
+CLEANFILES = *.tmp agmaint.sh apt-key-scripts.sh
 

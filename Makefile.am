@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: ./Makefile.am						#
-# Author: Copyright (C) 2014-2019  Mark Grant				#
+# Author: Copyright (C) 2014-2020  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -46,6 +46,7 @@
 #				/usr/share/java must be accommodated,	#
 #				so set the configure flags to be used	#
 #				by make distcheck.			#
+# 21/05/2020	MG	1.0.11	Add sysconfdir and pkgdatadir support.	#
 #									#
 #########################################################################
 
@@ -56,7 +57,7 @@ ACLOCAL_AMFLAGS = -I m4
 AM_DISTCHECK_CONFIGURE_FLAGS =
 
 
-SUBDIRS = src/prg/bash src/man/8
+SUBDIRS = src/data/pkgdata/trusted.sh.d src/data/sysconf src/man/8 src/prg/bash
 
 
 doc_DATA = AUTHORS ChangeLog COPYING NEWS README

@@ -33,12 +33,13 @@
 # 09/02/2018	MG	1.0.7	Change file's header for new directory	#
 #				names.					#
 # 22/09/2019	MG	1.0.8	Remove shebang.				#
-# 21/05/2020	MG	1.0.9	Rename script to have .sh extension.	#
+# 22/05/2020	MG	1.0.9	Rename script to have .sh extension.	#
+#				Add apt-key-scripts.sh man page.	#
 #									#
 #########################################################################
 
 
-agmaint.sh.8: Makefile
+agmaint.sh.8 apt-key-scripts.sh.8: Makefile
 	mkdir -p $(@D)
 	rm -f $@ $@.tmp
 	$(edit) $(srcdir)/$(@F).man.in > $@.tmp
@@ -58,10 +59,12 @@ agmaint.sh.8: Makefile
 	rm -f $@.tmp
 
 agmaint.sh.8: $(srcdir)/agmaint.sh.8.man.in
+apt-key-scripts.sh.8: $(srcdir)/apt-key-scripts.sh.8.man.in
 
-man_MANS = agmaint.sh.8
+man_MANS = agmaint.sh.8 apt-key-scripts.sh.8
 
-EXTRA_DIST = $(srcdir)/agmaint.sh.8.man.in
+EXTRA_DIST = $(srcdir)/agmaint.sh.8.man.in $(srcdir)/apt-key-scripts.sh.8.man.in
 
-CLEANFILES = *.tmp agmaint.sh.8
+
+CLEANFILES = *.tmp agmaint.sh.8 apt-key-scripts.sh.8
 

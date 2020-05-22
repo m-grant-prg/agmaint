@@ -1,0 +1,72 @@
+NAME
+apt-key-scripts.sh - A script to manage scripts to retrieve APT keys and store
+them in APT keyrings.
+SYNOPSIS
+apt-key-scripts.sh [OPTION]
+DESCRIPTION
+This is a helper script to simplify management of apt keys. The process is
+envisaged to go something like this:-
+
+1 ... Write a script to fetch and load an apt key to a named keyring. It does
+not need to be marked as executable. The keyring should be placed in
+@sysconfdir@/apt/trusted.gpg.d
+.br
+For example the script could read:-
+.RS
+wget -qO - https://bintray.com/user/downloadSubjectPublicKey?username=mgrantprg | sudo apt-key --keyring @sysconfdir@/apt/trusted.gpg.d/bintray-keyring.gpg add -
+.RE
+
+2 ... Install the script by
+.RS
+apt-key-scripts.sh --install 'script_name'
+.RE
+
+3 ... Run the script by
+.RS
+apt-key-scripts.sh --exec 'script_name'
+.RE
+OPTIONS
+-a or --exec-all  Execute all the available scripts
+
+-c or --cat 'filename'  Cat the specified script
+
+-e or --exec 'filename'  Execute the specified script
+
+-h or --help  Displays usage information
+
+-i or --install 'filename'  Install the specified script
+
+-l or --ls  List the available scripts
+
+-r or --rm 'filename'  Remove the specified script
+
+-v or --verbose  Make output verbose
+
+-V or --version  Displays version information
+
+-x or --install-examples  Install the example scripts
+EXIT STATUS
+0 - Success
+.br
+1 - General error
+.br
+64 - Command line usage error
+BUGS
+Report bugs to <m.grant.prg@gmail.com>
+EXAMPLES
+Example scripts can be found in @pkgdatadir@/trusted.sh.d
+AUTHOR
+Written by Mark Grant.
+COPYRIGHT
+Copyright (C) 2020 Mark Grant.
+.br
+License GPLv3+: GNU GPL version 3 or later
+.br
+<http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+.br
+There is NO WARRANTY, to the extent permitted by law.
+SEE ALSO
+apt-key(8) wget(1)
+

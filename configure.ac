@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: ./configure.ac						#
-# Author: Copyright (C) 2014-2019  Mark Grant				#
+# Author: Copyright (C) 2014-2020  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -74,6 +74,9 @@
 #				than a dist tarball.			#
 # 22/09/2019	MG	1.1.0	Re-vamp to new standard layout.		#
 #				Remove v from package version string.	#
+# 21/05/2020	MG	1.1.1	Make package tarname available for	#
+#				substitution.				#
+#				Add sysconfdir and pkgdatadir support.	#
 #									#
 #########################################################################
 
@@ -84,7 +87,7 @@
 #					#
 #########################################
 
-AC_REVISION([$Revision: 1.1.0 $])
+AC_REVISION([$Revision: 1.1.1 $])
 
 AC_PREREQ([2.69])
 
@@ -93,11 +96,11 @@ AC_PREREQ([2.69])
 # can be used by ac output and / or the sed setup below to substitute bookmarks
 # in source files.
 #
-AC_INIT(apt-get Maintenance Commands Script, 1.1.0,
-	m.grant.prg@gmail.com, agmaint)
+AC_INIT(apt-get Maintenance Scripts, 1.1.0, m.grant.prg@gmail.com, agmaint)
 
 AC_MSG_NOTICE(initialisation and setup)
 
+AC_SUBST(pkgtarname, $PACKAGE_TARNAME)
 AC_SUBST(pkgversion, $PACKAGE_VERSION)
 
 #
@@ -257,6 +260,7 @@ AC_MSG_NOTICE(processing additional checks and variables)
 #
 AC_SUBST([edit], ["sed \
 		-e 's|@bashlocation[@]|\$(BASH)|g' \
+		-e 's|@pkgtarname[@]|\$(pkgtarname)|g' \
 		-e 's|@pkgversion[@]|\$(pkgversion)|g' \
 		-e 's|@prefix[@]|\$(prefix)|g' \
 		-e 's|@exec_prefix[@]|\$(exec_prefix)|g' \
@@ -304,8 +308,10 @@ AC_MSG_NOTICE(processing output files)
 
 # Project Makefiles to create.
 AC_CONFIG_FILES([Makefile
-		src/prg/bash/Makefile
-		src/man/8/Makefile])
+		src/data/pkgdata/trusted.sh.d/Makefile
+		src/data/sysconf/Makefile
+		src/man/8/Makefile
+		src/prg/bash/Makefile])
 
 AC_OUTPUT
 
