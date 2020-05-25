@@ -1,3 +1,10 @@
+2020-05-25 v1.1.1 Mark Grant <m.grant.prg@gmail.com>
+	*  Add apt-key-scripts.sh
+	bash: Add .sh extension to agmaint
+	at: Update bootstrap.sh to v1.4.7
+	agmaint script now at v1.1.1
+	apt-key-scripts at v1.0.1
+
 2019-09-24 v1.1.0 Mark Grant <m.grant.prg@gmail.com>
 	*  at: Update bootstrap.sh to v1.4.5
 	travis: Initial project setup
