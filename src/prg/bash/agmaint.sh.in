@@ -78,6 +78,8 @@
 #				Replace env hashpling with absolute	#
 #				bash path from configure.		#
 # 21/05/2020	MG	1.1.1	Change script to .sh extension.		#
+# 03/06/2020	MG	1.1.2	Pass CLA's after a -- straight to the	#
+#				apt-get commands.			#
 #									#
 #########################################################################
 
@@ -85,9 +87,11 @@
 ##################
 # Init variables #
 ##################
-readonly version=1.1.1				# Script version
+readonly version=1.1.2				# Script version
 readonly outputprefix="$(basename $0): "
 readonly packageversion=@pkgversion@		# Package version
+
+cli_extra_args=""
 
 
 #############
@@ -192,10 +196,9 @@ proc_CL()
 		esac
 	done
 
-	# Script does not accept other arguments.
+	# Pass anything after the -- straight to the commands.
 	if (( $# )); then
-		output "Invalid argument." 1
-		script_exit 64
+		cli_extra_args=$@
 	fi
 }
 
@@ -206,22 +209,22 @@ proc_CL()
 
 proc_CL "$@"
 
-apt-get upgrade
+apt-get $cli_extra_args upgrade
 status=$?
 output "apt-get upgrade completed with exit code: "$status $status
 std_cmd_err_handler $status
 
-apt-get autoclean
+apt-get $cli_extra_args autoclean
 status=$?
 output "apt-get autoclean completed with exit code: "$status $status
 std_cmd_err_handler $status
 
-apt-get check
+apt-get $cli_extra_args check
 status=$?
 output "apt-get check completed with exit code: "$status $status
 std_cmd_err_handler $status
 
-apt-get autoremove
+apt-get $cli_extra_args autoremove
 status=$?
 output "apt-get autoremove completed with exit code: "$status $status
 std_cmd_err_handler $status

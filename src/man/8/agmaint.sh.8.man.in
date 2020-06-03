@@ -4,6 +4,11 @@ SYNOPSIS
 agmaint.sh [OPTION]
 DESCRIPTION
 A script to automate running of daily apt-get maintenance commands.
+
+Any arguments after a -- will get passed straight to the apt-get commands. This
+is useful for automatically assuming yes. e.g.
+.br
+agmaint.sh -- -y
 OPTIONS
 -h, --help  prints usage information
 
