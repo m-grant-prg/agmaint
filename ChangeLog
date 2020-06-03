@@ -1,3 +1,8 @@
+2020-06-03 v1.1.2 Mark Grant <m.grant.prg@gmail.com>
+	*   Pass CLA's after a -- straight to apt-get commands.
+	agmaint script now at v1.1.2
+	apt-key-scripts still at v1.0.1
+
 2020-05-25 v1.1.1 Mark Grant <m.grant.prg@gmail.com>
 	*  Add apt-key-scripts.sh
 	bash: Add .sh extension to agmaint

@@ -1,3 +1,6 @@
+Release 1.1.2 2020-06-03
+Pass CLA's after a -- straight to apt-get commands.
+
 Release 1.1.1 2020-05-25
 Add apt-key-scripts.sh
 bash: Add .sh extension to agmaint
