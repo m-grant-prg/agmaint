@@ -77,6 +77,7 @@
 # 21/05/2020	MG	1.1.1	Make package tarname available for	#
 #				substitution.				#
 #				Add sysconfdir and pkgdatadir support.	#
+# 14/06/2020	MG	1.1.2	Correct program checks.			#
 #									#
 #########################################################################
 
@@ -87,7 +88,7 @@
 #					#
 #########################################
 
-AC_REVISION([$Revision: 1.1.1 $])
+AC_REVISION([$Revision: 1.1.2 $])
 
 AC_PREREQ([2.69])
 
@@ -172,6 +173,11 @@ AC_MSG_NOTICE(checking for some standard AutoTools required programs)
 AC_PROG_INSTALL
 
 AC_MSG_NOTICE(checking for particular programs required by this build)
+AC_CHECK_PROG(ECHO, echo, yes, no)
+if test "x$ECHO" = "xno" ; then
+	AC_MSG_ERROR(echo not found - needed at run time)
+fi
+
 AC_CHECK_PROG([TAR], [tar], [yes], [no])
 if test "x$TAR" = "xno" ; then
 	AC_MSG_ERROR([tar not found])
@@ -194,14 +200,14 @@ if test "x$BASH" = "xno" ; then
 fi
 
 AC_MSG_NOTICE(checking for particular programs required at run time)
-AC_CHECK_PROG(ECHO, echo, yes, no)
-if test "x$ECHO" = "xno" ; then
-	AC_MSG_WARN(echo not found - needed at run time)
+AC_CHECK_PROG(APT_GET, apt-get, yes, no)
+if test "x$APT_GET" = "xno" ; then
+	AC_MSG_WARN([apt-get not found - needed at run time])
 fi
 
-AC_CHECK_PROG(PRINTF, printf, yes, no)
-if test "x$PRINTF" = "xno" ; then
-	AC_MSG_WARN(printf not found - needed at run time)
+AC_CHECK_PROG([CAT], [cat], [yes], [no])
+if test "x$CAT" = "xno" ; then
+	AC_MSG_WARN(cat not found - needed at run time)
 fi
 
 AC_CHECK_PROG([GETOPT], [getopt], [yes], [no])
@@ -209,9 +215,9 @@ if test "x$GETOPT" = "xno" ; then
 	AC_MSG_WARN(getopt not found - needed at run time)
 fi
 
-AC_CHECK_PROG(APT_GET, apt-get, yes, no)
-if test "x$APT_GET" = "xno" ; then
-   	AC_MSG_WARN([apt-get not found])
+AC_CHECK_PROG(PRINTF, printf, yes, no)
+if test "x$PRINTF" = "xno" ; then
+	AC_MSG_WARN(printf not found - needed at run time)
 fi
 
 
