@@ -64,6 +64,8 @@
 # Date		Author	Version	Description				#
 #									#
 # 22/05/2020	MG	1.0.1	Created.				#
+# 14/06/2020	MG	1.0.2	Ensure functions called by others	#
+#				appear first.				#
 #									#
 #########################################################################
 
@@ -71,7 +73,7 @@
 ##################
 # Init variables #
 ##################
-readonly version=1.0.1				# Script version
+readonly version=1.0.2				# Script version
 readonly outputprefix="$(basename $0): "
 readonly packageversion=@pkgversion@		# Package version
 
@@ -249,6 +251,16 @@ proc_CL()
 	fi
 }
 
+# Execute the specified script.
+# Parameters	- $1 is the script.
+#		- $2 is $verbose.
+# No return value.
+exec_script()
+{
+	sudo $scriptloc/$1 $2
+	std_cmd_err_handler $?
+}
+
 # Execute all available scripts.
 # Parameters	- $1 is $verbose.
 # No return value.
@@ -269,16 +281,6 @@ exec_all_scripts()
 cat_script()
 {
 	cat "$scriptloc/$1"
-	std_cmd_err_handler $?
-}
-
-# Execute the specified script.
-# Parameters	- $1 is the script.
-#		- $2 is $verbose.
-# No return value.
-exec_script()
-{
-	sudo $scriptloc/$1 $2
 	std_cmd_err_handler $?
 }
 
