@@ -78,6 +78,7 @@
 #				substitution.				#
 #				Add sysconfdir and pkgdatadir support.	#
 # 14/06/2020	MG	1.1.2	Correct program checks.			#
+# 14/03/2021	MG	1.1.3	Add wget check.				#
 #									#
 #########################################################################
 
@@ -88,7 +89,7 @@
 #					#
 #########################################
 
-AC_REVISION([$Revision: 1.1.2 $])
+AC_REVISION([$Revision: 1.1.3 $])
 
 AC_PREREQ([2.69])
 
@@ -218,6 +219,11 @@ fi
 AC_CHECK_PROG(PRINTF, printf, yes, no)
 if test "x$PRINTF" = "xno" ; then
 	AC_MSG_WARN(printf not found - needed at run time)
+fi
+
+AC_CHECK_PROG(WGET, wget, yes, no)
+if test "x$WGET" = "xno" ; then
+	AC_MSG_WARN(wget not found - needed at run time)
 fi
 
 
