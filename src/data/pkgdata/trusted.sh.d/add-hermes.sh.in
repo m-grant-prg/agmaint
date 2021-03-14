@@ -9,7 +9,7 @@
 #########################################################################
 #									#
 # Script ID: add-hermes.sh						#
-# Author: Copyright (C) 2020  Mark Grant				#
+# Author: Copyright (C) 2020, 2021  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -58,6 +58,8 @@
 # Date		Author	Version	Description				#
 #									#
 # 22/05/2020	MG	1.0.1	Created.				#
+# 14/03/2021	MG	1.0.2	Use hermes FQDN otherwise it does not	#
+#				work in Ubuntu containers.		#
 #									#
 #########################################################################
 
@@ -68,7 +70,7 @@ set -e
 ##################
 # Init variables #
 ##################
-readonly version=1.0.1				# Script version
+readonly version=1.0.2				# Script version
 readonly outputprefix="$(basename $0): "
 readonly packageversion=@pkgversion@		# Package version
 
@@ -197,5 +199,5 @@ proc_CL()
 proc_CL "$@"
 
 # Hermes
-wget -"$verbose"O - http://hermes/aptrepos/hermes.gpg | sudo apt-key --keyring @sysconfdir@/apt/trusted.gpg.d/hermes-keyring.gpg add -
+wget -"$verbose"O - http://hermes.mgent.home/aptrepos/hermes.gpg | sudo apt-key --keyring @sysconfdir@/apt/trusted.gpg.d/hermes-keyring.gpg add -
 
