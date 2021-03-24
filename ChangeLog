@@ -1,3 +1,14 @@
+2021-03-24 v1.1.4 Mark Grant <m.grant.prg@gmail.com>
+	* at: Add wget availability check
+	apt-key: Remove obsoleted Bintray script
+	apt-key: Use hermes FQDN
+	travis: Stop using Travis
+	actions: Initial build action setup
+	at: lxcu: Add lxc test build setup
+	travis: Bionic is the new minimum release
+	agmaint.sh script still at v1.1.2
+	apt-key-scripts.sh still at v1.0.2
+
 2020-06-15 v1.1.3 Mark Grant <m.grant.prg@gmail.com>
 	*   at: Tighten up program checks
 	README: Correct git command
