@@ -13,7 +13,7 @@ not need to be marked as executable. The keyring should be placed in
 .br
 For example the script could read:-
 .RS
-wget -qO - https://bintray.com/user/downloadSubjectPublicKey?username=mgrantprg | sudo apt-key --keyring @sysconfdir@/apt/trusted.gpg.d/bintray-keyring.gpg add -
+curl -fsSLO http://hermes.mgent.home/aptrepos/hermes.gpg | sudo apt-key --keyring @sysconfdir@/apt/trusted.gpg.d/hermes-keyring.gpg add -
 .RE
 
 2 ... Install the script by
@@ -58,7 +58,7 @@ Example scripts can be found in @pkgdatadir@/trusted.sh.d
 AUTHOR
 Written by Mark Grant.
 COPYRIGHT
-Copyright (C) 2020 Mark Grant.
+Copyright (C) 2020, 2021 Mark Grant.
 .br
 License GPLv3+: GNU GPL version 3 or later
 .br
@@ -68,5 +68,5 @@ This is free software: you are free to change and redistribute it.
 .br
 There is NO WARRANTY, to the extent permitted by law.
 SEE ALSO
-apt-key(8) wget(1)
+apt-key(8) curl(1)
 
