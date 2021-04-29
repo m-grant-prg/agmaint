@@ -1,3 +1,9 @@
+2021-04-29 v1.1.5 Mark Grant <m.grant.prg@gmail.com>
+	* pkgdata: Prefer curl to wget
+	at: Upgrade bootstrap.sh to v1.4.8
+	agmaint.sh script still at v1.1.2
+	apt-key-scripts.sh still at v1.0.2
+
 2021-03-24 v1.1.4 Mark Grant <m.grant.prg@gmail.com>
 	* at: Add wget availability check
 	apt-key: Remove obsoleted Bintray script
