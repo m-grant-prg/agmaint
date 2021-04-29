@@ -99,7 +99,7 @@ AC_PREREQ([2.69])
 # can be used by ac output and / or the sed setup below to substitute bookmarks
 # in source files.
 #
-AC_INIT(apt-get Maintenance Scripts, 1.1.4+rc2, m.grant.prg@gmail.com, agmaint)
+AC_INIT(apt-get Maintenance Scripts, 1.1.5, m.grant.prg@gmail.com, agmaint)
 
 AC_MSG_NOTICE(initialisation and setup)
 
