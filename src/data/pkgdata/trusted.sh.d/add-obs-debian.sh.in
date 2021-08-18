@@ -60,6 +60,7 @@
 #									#
 # 22/05/2020	MG	1.0.1	Created.				#
 # 25/04/2021	MG	1.0.2	Prefer curl to wget.			#
+# 18/08/2021	MG	1.0.3	Add bullseye.				#
 #									#
 #########################################################################
 
@@ -199,6 +200,7 @@ proc_CL()
 proc_CL "$@"
 
 # OBS - Debian
+curl -fsSL"$verbose" https://download.opensuse.org/repositories/home:m-grant-prg/Debian_11/Release.key | sudo apt-key --keyring @sysconfdir@/apt/trusted.gpg.d/obs-debian-keyring.gpg add -
 curl -fsSL"$verbose" https://download.opensuse.org/repositories/home:m-grant-prg/Debian_10/Release.key | sudo apt-key --keyring @sysconfdir@/apt/trusted.gpg.d/obs-debian-keyring.gpg add -
 curl -fsSL"$verbose" https://download.opensuse.org/repositories/home:m-grant-prg/Debian_9.0/Release.key | sudo apt-key --keyring @sysconfdir@/apt/trusted.gpg.d/obs-debian-keyring.gpg add -
 
