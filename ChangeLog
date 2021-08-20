@@ -1,3 +1,12 @@
+2021-08-20 v1.1.6 Mark Grant <m.grant.prg@gmail.com>
+	* apt-key: Add OBS bullseye key
+	git: Upgrade .gitignore to v1.0.3
+	at: Update bootstrap.sh to v1.4.9
+	git: Add mailmap
+	git: Add gitattributes
+	agmaint.sh script still at v1.1.2
+	apt-key-scripts.sh still at v1.0.2
+
 2021-04-29 v1.1.5 Mark Grant <m.grant.prg@gmail.com>
 	* pkgdata: Prefer curl to wget
 	at: Upgrade bootstrap.sh to v1.4.8
