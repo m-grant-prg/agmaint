@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: ./Makefile.am						#
-# Author: Copyright (C) 2014-2020  Mark Grant				#
+# Author: Copyright (C) 2014-2021  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -47,6 +47,7 @@
 #				so set the configure flags to be used	#
 #				by make distcheck.			#
 # 21/05/2020	MG	1.0.11	Add sysconfdir and pkgdatadir support.	#
+# 08/11/2021	MG	1.0.12	Add misc directory to DIST.		#
 #									#
 #########################################################################
 
@@ -64,7 +65,7 @@ doc_DATA = AUTHORS ChangeLog COPYING NEWS README
 
 
 EXTRA_DIST = $(srcdir)/AUTHORS $(srcdir)/ChangeLog $(srcdir)/COPYING \
-		$(srcdir)/NEWS $(srcdir)/README
+		$(srcdir)/NEWS $(srcdir)/README $(srcdir)/misc
 
 
 srctarball:
