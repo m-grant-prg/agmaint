@@ -39,6 +39,10 @@ jobs:
       # Check-out the repository under $GITHUB_WORKSPACE.
       - uses: actions/checkout@v2
 
+
+      - name: Get latest tag
+        run: git rev-list --tags --max-count=1
+
       - name: Add the extra PPA
         run: sudo add-apt-repository ppa:m-grant-prg/utils -y
       - name: Update the package list
