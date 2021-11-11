@@ -111,7 +111,7 @@ AC_PREREQ([2.69])
 # in source files.
 #
 # Set pkg_version for a default hard-coded version number.
-pkg_version="1.1.6"
+pkg_version="1.1.6+rc1"
 
 AC_INIT([apt-get Maintenance Scripts], m4_esyscmd([ \
 	git describe --always 1>/dev/null 2>/dev/null \
