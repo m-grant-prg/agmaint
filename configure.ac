@@ -80,6 +80,9 @@
 # 14/06/2020	MG	1.1.2	Correct program checks.			#
 # 14/03/2021	MG	1.1.3	Add wget check.				#
 # 25/04/2021	MG	1.1.4	Change wget to curl.			#
+# 11/11/2021	MG	1.1.5	If git is available and we are inside a	#
+#				git tree then use git describe to add	#
+#				further package version information.	#
 #									#
 #########################################################################
 
@@ -90,16 +93,31 @@
 #					#
 #########################################
 
-AC_REVISION([$Revision: 1.1.4 $])
+AC_REVISION([$Revision: 1.1.5 $])
 
 AC_PREREQ([2.69])
 
 #
+# The following macro uses git, if available, to provide versioning information.
+# The logic is as follows:-
+# If git is not available, is not initialised or no commit has been made, then
+# the local variable pkg_version will be used.
+# If git is available but no Tag has been created then just a commit identifier
+# will be used.
+# If git is available and a tag has been created then the most recent tag, plus
+# number of commits since the tag, plus a commit identifier will be used.
 # The package version in ac init will be used to create an output variable which
 # can be used by ac output and / or the sed setup below to substitute bookmarks
 # in source files.
 #
-AC_INIT(apt-get Maintenance Scripts, 1.1.6, m.grant.prg@gmail.com, agmaint)
+# Set pkg_version for a default hard-coded version number.
+pkg_version="1.1.6"
+
+AC_INIT([apt-get Maintenance Scripts], m4_esyscmd([ \
+	git describe --always 1>/dev/null 2>/dev/null \
+	&& git describe --always | tr -d '\n' \
+	|| echo $pkg_version | tr -d '\n']),
+	[m.grant.prg@gmail.com], [agmaint])
 
 AC_MSG_NOTICE(initialisation and setup)
 
