@@ -115,7 +115,8 @@ pkg_version="1.1.6+rc1"
 
 AC_INIT([apt-get Maintenance Scripts], m4_esyscmd([ \
 	git describe --always 1>/dev/null 2>/dev/null \
-	&& git describe --always | tr -d '\n' \
+	&& sed --help 1>/dev/null 2>/dev/null \
+	&& git describe --always | sed 's/v//' | tr -d '\n' \
 	|| echo $pkg_version | tr -d '\n']),
 	[m.grant.prg@gmail.com], [agmaint])
 
