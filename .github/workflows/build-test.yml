@@ -43,7 +43,6 @@ jobs:
         with:
           fetch-depth: 0 # Get all incl tags, needed for git-enhanced AC_INIT
 
-
       - name: Add the extra PPA
         run: sudo add-apt-repository ppa:m-grant-prg/utils -y
       - name: Update the package list
