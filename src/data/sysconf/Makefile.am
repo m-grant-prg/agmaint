@@ -1,10 +1,10 @@
 #########################################################################
 #									#
 # Script ID: src/data/sysconf/Makefile.am				#
-# Author: Copyright (C) 2020  Mark Grant				#
+# Author: Copyright (C) 2020, 2021  Mark Grant				#
 #									#
-# Released under the GPLv3 or later.					#
-# SPDX-License-Identifier: GPL-3.0-or-later				#
+# Released under the GPLv3 only.					#
+# SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
 # AutoMake script file for the sysconf directory.			#
@@ -18,6 +18,7 @@
 # Date		Author	Version	Description				#
 #									#
 # 21/05/2020	MG	1.0.1	Created.				#
+# 22/11/2021	MG	1.0.2	Tighten SPDX tag.			#
 #									#
 #########################################################################
 

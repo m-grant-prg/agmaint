@@ -12,7 +12,7 @@
 # Author: Copyright (C) 2020, 2021  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
-# SPDX-License-Identifier: GPL-3.0					#
+# SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
 # To add apt keys for supported Debian releases at the openSUSE Build	#
@@ -61,6 +61,7 @@
 # 22/05/2020	MG	1.0.1	Created.				#
 # 25/04/2021	MG	1.0.2	Prefer curl to wget.			#
 # 18/08/2021	MG	1.0.3	Add bullseye.				#
+# 22/11/2021	MG	1.0.4	Tighten SPDX tag.			#
 #									#
 #########################################################################
 
@@ -71,7 +72,7 @@ set -e
 ##################
 # Init variables #
 ##################
-readonly version=1.0.2				# Script version
+readonly version=1.0.4				# Script version
 readonly outputprefix="$(basename $0): "
 readonly packageversion=@pkgversion@		# Package version
 

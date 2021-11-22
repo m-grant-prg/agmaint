@@ -4,7 +4,7 @@
 # Author: Copyright (C) 2014-2021  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
-# SPDX-License-Identifier: GPL-3.0					#
+# SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
 # Automake script file to generate agmaint project from source.		#
@@ -48,6 +48,7 @@
 #				by make distcheck.			#
 # 21/05/2020	MG	1.0.11	Add sysconfdir and pkgdatadir support.	#
 # 08/11/2021	MG	1.0.12	Add misc directory to DIST.		#
+# 22/11/2021	MG	1.0.13	Tighten SPDX tag.			#
 #									#
 #########################################################################
 

@@ -1,10 +1,10 @@
 #########################################################################
 #									#
 # Script ID: src/prg/bash/Makefile.am					#
-# Author: Copyright (C) 2014-2020  Mark Grant				#
+# Author: Copyright (C) 2014-2021  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
-# SPDX-License-Identifier: GPL-3.0					#
+# SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
 # Automake script file to generate agmaint script from source.		#
@@ -31,6 +31,7 @@
 # 22/09/2019	MG	1.0.8	Remove shebang.				#
 # 21/05/2020	MG	1.0.9	Change script extension .sh		#
 #				Add apt-key-scripts.sh			#
+# 22/11/2021	MG	1.0.10	Tighten SPDX tag.			#
 #									#
 #########################################################################
 

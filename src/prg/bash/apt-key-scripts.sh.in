@@ -9,10 +9,10 @@
 #########################################################################
 #									#
 # Script ID: apt-key-scripts.sh						#
-# Author: Copyright (C) 2020  Mark Grant				#
+# Author: Copyright (C) 2020, 2021  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
-# SPDX-License-Identifier: GPL-3.0					#
+# SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
 # To manage and execute scripts for maintaining apt trusted keys and	#
@@ -66,6 +66,7 @@
 # 22/05/2020	MG	1.0.1	Created.				#
 # 14/06/2020	MG	1.0.2	Ensure functions called by others	#
 #				appear first.				#
+# 22/11/2021	MG	1.0.3	Tighten SPDX tag.			#
 #									#
 #########################################################################
 
@@ -73,7 +74,7 @@
 ##################
 # Init variables #
 ##################
-readonly version=1.0.2				# Script version
+readonly version=1.0.3				# Script version
 readonly outputprefix="$(basename $0): "
 readonly packageversion=@pkgversion@		# Package version
 
