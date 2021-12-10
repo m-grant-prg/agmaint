@@ -1,3 +1,7 @@
+2021-12-10 v1.1.8 Mark Grant <m.grant.prg@gmail.com>
+	* apt-key: Add OBS Raspbian Bullseye
+	git: Update gitattributes to v1.0.3
+
 2021-11-22 v1.1.7 Mark Grant <m.grant.prg@gmail.com>
 	* at: Add AC_COPYRIGHT macro
 	all: Tighten SPDX tags
