@@ -61,6 +61,7 @@
 # 22/05/2020	MG	1.0.1	Created.				#
 # 25/04/2021	MG	1.0.2	Prefer curl to wget.			#
 # 22/11/2021	MG	1.0.3	Tighten SPDX tag.			#
+# 10/12/2021	MG	1.0.4	Add Raspbian bullseye.			#
 #									#
 #########################################################################
 
@@ -71,7 +72,7 @@ set -e
 ##################
 # Init variables #
 ##################
-readonly version=1.0.3				# Script version
+readonly version=1.0.4				# Script version
 readonly outputprefix="$(basename $0): "
 readonly packageversion=@pkgversion@		# Package version
 
@@ -200,6 +201,7 @@ proc_CL()
 proc_CL "$@"
 
 # OBS
+curl -fsSL"$verbose" https://download.opensuse.org/repositories/home:m-grant-prg/Raspbian_11/Release.key | sudo apt-key --keyring @sysconfdir@/apt/trusted.gpg.d/obs-raspbian-keyring.gpg add -
 curl -fsSL"$verbose" https://download.opensuse.org/repositories/home:m-grant-prg/Raspbian_10/Release.key | sudo apt-key --keyring @sysconfdir@/apt/trusted.gpg.d/obs-raspbian-keyring.gpg add -
 curl -fsSL"$verbose" https://download.opensuse.org/repositories/home:m-grant-prg/Raspbian_9.0/Release.key | sudo apt-key --keyring @sysconfdir@/apt/trusted.gpg.d/obs-raspbian-keyring.gpg add -
 
