@@ -85,6 +85,8 @@
 #				further package version information.	#
 # 22/11/2021	MG	1.1.6	Tighten SPDX tag.			#
 #				Add AC_COPYRIGHT macro.			#
+# 10/02/2022	MG	1.1.7	apt-key is deprecated so use gpg - add	#
+#				a program check.			#
 #									#
 #########################################################################
 
@@ -99,7 +101,7 @@ AC_COPYRIGHT([Copyright (C) 2014-2022  Mark Grant
 	      This script is free to copy or distribute under the terms set out
 	      in the package license. See COPYING for details.])
 
-AC_REVISION([$Revision: 1.1.6 $])
+AC_REVISION([$Revision: 1.1.7 $])
 
 AC_PREREQ([2.69])
 
@@ -240,6 +242,11 @@ fi
 AC_CHECK_PROG([GETOPT], [getopt], [yes], [no])
 if test "x$GETOPT" = "xno" ; then
 	AC_MSG_WARN(getopt not found - needed at run time)
+fi
+
+AC_CHECK_PROG([GPG], [gpg], [yes], [no])
+if test "x$GPG" = "xno" ; then
+	AC_MSG_WARN(gpg not found - needed at run time)
 fi
 
 AC_CHECK_PROG(PRINTF, printf, yes, no)

@@ -9,7 +9,7 @@
 #########################################################################
 #									#
 # Script ID: add-mgrant-utils-ppa.sh					#
-# Author: Copyright (C) 2020, 2021  Mark Grant				#
+# Author: Copyright (C) 2020-2022  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -59,6 +59,7 @@
 #									#
 # 22/05/2020	MG	1.0.1	Created.				#
 # 22/11/2021	MG	1.0.2	Tighten SPDX tag.			#
+# 10/02/2022	MG	1.0.3	apt-key is deprecated, use gpg.		#
 #									#
 #########################################################################
 
@@ -69,7 +70,7 @@ set -e
 ##################
 # Init variables #
 ##################
-readonly version=1.0.2				# Script version
+readonly version=1.0.3				# Script version
 readonly outputprefix="$(basename $0): "
 readonly packageversion=@pkgversion@		# Package version
 
@@ -196,6 +197,13 @@ proc_CL()
 proc_CL "$@"
 
 # Launchpad
-sudo apt-key --keyring @sysconfdir@/apt/trusted.gpg.d/mgrant-utils-ppa-keyring.gpg adv --keyserver keyserver.ubuntu.com --recv-keys d1946372ba01d17602a2ccd372ddd80b3669565c
-sudo apt-key --keyring @sysconfdir@/apt/trusted.gpg.d/mgrant-utils-ppa-keyring.gpg adv --keyserver keyserver.ubuntu.com --recv-keys 8294A6371AB32B66
+sudo gpg --no-default-keyring \
+	--keyring @sysconfdir@/apt/trusted.gpg.d/tmp-keyring.gpg \
+	--keyserver keyserver.ubuntu.com \
+	--recv-keys d1946372ba01d17602a2ccd372ddd80b3669565c \
+		9F3747C4E4E55A576907F7038294A6371AB32B66
+sudo gpg --export --no-default-keyring \
+	--keyring @sysconfdir@/apt/trusted.gpg.d/tmp-keyring.gpg \
+	--output @sysconfdir@/apt/trusted.gpg.d/mgrant-utils-ppa-keyring.gpg
+rm -f @sysconfdir@/apt/trusted.gpg.d/tmp-keyring.gpg
 

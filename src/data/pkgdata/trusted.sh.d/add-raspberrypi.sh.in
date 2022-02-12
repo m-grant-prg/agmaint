@@ -9,7 +9,7 @@
 #########################################################################
 #									#
 # Script ID: add-raspberrypi.sh						#
-# Author: Copyright (C) 2020, 2021  Mark Grant				#
+# Author: Copyright (C) 2020-2022  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -60,6 +60,7 @@
 # 22/05/2020	MG	1.0.1	Created.				#
 # 25/04/2021	MG	1.0.2	Prefer curl to wget.			#
 # 22/11/2021	MG	1.0.3	Tighten SPDX tag.			#
+# 11/02/2022	MG	1.0.4	apt-key is deprecated, use gpg.		#
 #									#
 #########################################################################
 
@@ -70,7 +71,7 @@ set -e
 ##################
 # Init variables #
 ##################
-readonly version=1.0.3				# Script version
+readonly version=1.0.4				# Script version
 readonly outputprefix="$(basename $0): "
 readonly packageversion=@pkgversion@		# Package version
 
@@ -199,5 +200,8 @@ proc_CL()
 proc_CL "$@"
 
 # rapberrypi.org/debian
-curl -fsSL"$verbose" https://archive.raspberrypi.org/debian/raspberrypi.gpg.key | sudo apt-key --keyring @sysconfdir@/apt/trusted.gpg.d/raspberrypi-keyring.gpg add -
+curl -fsSL"$verbose" https://archive.raspberrypi.org/debian/raspberrypi.gpg.key \
+	| gpg --dearmor \
+	| sudo tee @sysconfdir@/apt/trusted.gpg.d/raspberrypi-keyring.gpg \
+	> /dev/null
 
