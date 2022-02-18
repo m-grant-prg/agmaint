@@ -1,3 +1,7 @@
+2022-02-18 v1.1.9 Mark Grant <m.grant.prg@gmail.com>
+	* pkgdata: apt-key is deprecated, use gpg
+	pkgdata: Remove OBS scripts
+
 2021-12-10 v1.1.8 Mark Grant <m.grant.prg@gmail.com>
 	* apt-key: Add OBS Raspbian Bullseye
 	git: Update gitattributes to v1.0.3

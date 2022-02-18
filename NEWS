@@ -1,3 +1,7 @@
+Release 1.1.9 2022-02-18
+Remove OBS script.
+Technical change information can be found in the ChangeLog file.
+
 Release 1.1.8 2021-12-10
 Add apt-key script for OBS Raspbian Bullseye.
 Technical change information can be found in the ChangeLog file.
