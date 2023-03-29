@@ -1,3 +1,12 @@
+2023-03-29 v1.2.1 Mark Grant <m.grant.prg@gmail.com>
+	* actions: Run on ubuntu-latest
+	at: Upgrade bootstrap.sh to v1.5.6
+	git: Update mailmap to v1.0.3
+	git: Update gitignore to v1.0.11
+	git: Update gitattributes to v1.0.4
+	editors: Update editorconfig to v1.0.4
+	at: Use AC_CONFIG_DIR_AUX
+
 2022-02-18 v1.1.9 Mark Grant <m.grant.prg@gmail.com>
 	* pkgdata: apt-key is deprecated, use gpg
 	pkgdata: Remove OBS scripts
