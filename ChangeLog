@@ -1,3 +1,12 @@
+2023-06-26 v1.3.0 Mark Grant <m.grant.prg@gmail.com>
+	* bash: Use double quotes to prevent globbing and word splitting
+	bash: Remove unused variable
+	bash: Silence array to string shellcheck warning
+	bash: Use double quotes to prevent globbing and word splitting
+	bash: Remove unused variable
+	at: Allow for v1.1.1~rc1 version numbering
+	lxcu: Add in-file help-text
+
 2023-03-29 v1.2.1 Mark Grant <m.grant.prg@gmail.com>
 	* actions: Run on ubuntu-latest
 	at: Upgrade bootstrap.sh to v1.5.6
