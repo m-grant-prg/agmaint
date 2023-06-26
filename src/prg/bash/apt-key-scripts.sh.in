@@ -9,7 +9,7 @@
 #########################################################################
 #									#
 # Script ID: apt-key-scripts.sh						#
-# Author: Copyright (C) 2020, 2021  Mark Grant				#
+# Author: Copyright (C) 2020, 2021, 2023  Mark Grant			#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -67,6 +67,7 @@
 # 14/06/2020	MG	1.0.2	Ensure functions called by others	#
 #				appear first.				#
 # 22/11/2021	MG	1.0.3	Tighten SPDX tag.			#
+# 26/06/2023	MG	1.0.4	Fix shellcheck warnings.		#
 #									#
 #########################################################################
 
@@ -74,8 +75,7 @@
 ##################
 # Init variables #
 ##################
-readonly version=1.0.3				# Script version
-readonly outputprefix="$(basename $0): "
+readonly version=1.0.4				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 readonly scriptloc=@sysconfdir@/@pkgtarname@/trusted.sh.d	# Live scripts
