@@ -131,7 +131,7 @@ output()
 # No return value.
 script_exit()
 {
-	exit $1
+	exit "$1"
 }
 
 # Standard function to test command error and exit if non-zero.
@@ -140,7 +140,7 @@ script_exit()
 std_cmd_err_handler()
 {
 	if (( $1 )); then
-		script_exit $1
+		script_exit "1"
 	fi
 }
 
@@ -210,21 +210,25 @@ proc_CL()
 
 proc_CL "$@"
 
+# shellcheck disable=SC2086 # Word splitting on space is required.
 apt-get $cli_extra_args upgrade
 status=$?
 output "apt-get upgrade completed with exit code: "$status $status
 std_cmd_err_handler $status
 
+# shellcheck disable=SC2086 # Word splitting on space is required.
 apt-get $cli_extra_args autoclean
 status=$?
 output "apt-get autoclean completed with exit code: "$status $status
 std_cmd_err_handler $status
 
+# shellcheck disable=SC2086 # Word splitting on space is required.
 apt-get $cli_extra_args check
 status=$?
 output "apt-get check completed with exit code: "$status $status
 std_cmd_err_handler $status
 
+# shellcheck disable=SC2086 # Word splitting on space is required.
 apt-get $cli_extra_args autoremove
 status=$?
 output "apt-get autoremove completed with exit code: "$status $status
