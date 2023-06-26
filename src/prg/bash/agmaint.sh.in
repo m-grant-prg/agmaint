@@ -199,6 +199,9 @@ proc_CL()
 
 	# Pass anything after the -- straight to the commands.
 	if (( $# )); then
+		# bash concatenates with a space, fine for later word splitting
+		# on command line.
+		# shellcheck disable=SC2124
 		cli_extra_args=$@
 	fi
 }
