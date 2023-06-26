@@ -129,7 +129,7 @@ output()
 # No return value.
 script_exit()
 {
-	exit $1
+	exit "$1"
 }
 
 # Standard function to test command error and exit if non-zero.
@@ -138,7 +138,7 @@ script_exit()
 std_cmd_err_handler()
 {
 	if (( $1 )); then
-		script_exit $1
+		script_exit "$1"
 	fi
 }
 
@@ -179,19 +179,19 @@ proc_CL()
 		case "$1" in
 		-a|--exec-all)
 			if $process ; then
-				exec_all_scripts $verbose
+				exec_all_scripts "$verbose"
 			fi
 			shift
 			;;
 		-c|--cat)
 			if $process ; then
-				cat_script $2
+				cat_script "$2"
 			fi
 			shift 2
 			;;
 		-e|--exec)
 			if $process ; then
-				exec_script $2 $verbose
+				exec_script "$2" "$verbose"
 			fi
 			shift 2
 			;;
@@ -203,7 +203,7 @@ proc_CL()
 			;;
 		-i|--install)
 			if $process ; then
-				install_script $2 $verbose
+				install_script "$2" "$verbose"
 			fi
 			shift 2
 			;;
@@ -215,7 +215,7 @@ proc_CL()
 			;;
 		-r|--rm)
 			if $process ; then
-				rm_script $2 $verbose
+				rm_script "$2" "$verbose"
 			fi
 			shift 2
 			;;
@@ -258,7 +258,7 @@ proc_CL()
 # No return value.
 exec_script()
 {
-	sudo $scriptloc/$1 $2
+	sudo $scriptloc/"$1" "$2"
 	std_cmd_err_handler $?
 }
 
@@ -272,7 +272,7 @@ exec_all_scripts()
 
 	ex_script_list=$(ls $scriptloc)
 	for script in $ex_script_list; do
-		exec_script $script $1
+		exec_script "$script" "$1"
 	done
 }
 
@@ -291,9 +291,9 @@ cat_script()
 # No return value.
 install_script()
 {
-	sudo cp $2 "$1" "$scriptloc"
+	sudo cp "$2" "$1" "$scriptloc"
 	std_cmd_err_handler $?
-	sudo chmod $2 u+x "$scriptloc/$(basename $1)"
+	sudo chmod "$2" u+x "$scriptloc/$(basename "$1")"
 	std_cmd_err_handler $?
 }
 
@@ -312,7 +312,7 @@ ls_scripts()
 # No return value.
 rm_script()
 {
-	sudo rm $2 "$scriptloc/$1"
+	sudo rm "$2" "$scriptloc/$1"
 	std_cmd_err_handler $?
 }
 
@@ -326,7 +326,7 @@ install_examples()
 
 	ex_script_list=$(ls $exampleloc)
 	for script in $ex_script_list; do
-		install_script $exampleloc/$script $1
+		install_script "$exampleloc/$script" "$1"
 	done
 }
 
