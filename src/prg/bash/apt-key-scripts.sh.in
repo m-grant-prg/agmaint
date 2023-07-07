@@ -68,6 +68,7 @@
 #				appear first.				#
 # 22/11/2021	MG	1.0.3	Tighten SPDX tag.			#
 # 26/06/2023	MG	1.0.4	Fix shellcheck warnings.		#
+# 07/07/2023	MG	1.0.5	Handle verbose as an array.		#
 #									#
 #########################################################################
 
@@ -75,14 +76,14 @@
 ##################
 # Init variables #
 ##################
-readonly version=1.0.4				# Script version
+readonly version=1.0.5				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 readonly scriptloc=@sysconfdir@/@pkgtarname@/trusted.sh.d	# Live scripts
 readonly exampleloc=@pkgdatadir@/trusted.sh.d		# Example scripts
 
 process=false
-verbose=""
+verbose=()
 
 
 #############
@@ -179,7 +180,7 @@ proc_CL()
 		case "$1" in
 		-a|--exec-all)
 			if $process ; then
-				exec_all_scripts "$verbose"
+				exec_all_scripts
 			fi
 			shift
 			;;
@@ -191,7 +192,7 @@ proc_CL()
 			;;
 		-e|--exec)
 			if $process ; then
-				exec_script "$2" "$verbose"
+				exec_script "$2"
 			fi
 			shift 2
 			;;
@@ -203,7 +204,7 @@ proc_CL()
 			;;
 		-i|--install)
 			if $process ; then
-				install_script "$2" "$verbose"
+				install_script "$2"
 			fi
 			shift 2
 			;;
@@ -215,12 +216,12 @@ proc_CL()
 			;;
 		-r|--rm)
 			if $process ; then
-				rm_script "$2" "$verbose"
+				rm_script "$2"
 			fi
 			shift 2
 			;;
 		-v|--verbose)
-			verbose="-v"
+			verbose=(-v)
 			shift
 			;;
 		-V|--version)
@@ -232,7 +233,7 @@ proc_CL()
 			;;
 		-x|--install-examples)
 			if $process ; then
-				install_examples $verbose
+				install_examples
 			fi
 			shift
 			;;
@@ -254,16 +255,15 @@ proc_CL()
 
 # Execute the specified script.
 # Parameters	- $1 is the script.
-#		- $2 is $verbose.
 # No return value.
 exec_script()
 {
-	sudo $scriptloc/"$1" "$2"
+	sudo $scriptloc/"$1" "${verbose[@]}"
 	std_cmd_err_handler $?
 }
 
 # Execute all available scripts.
-# Parameters	- $1 is $verbose.
+# No parameters
 # No return value.
 exec_all_scripts()
 {
@@ -272,7 +272,7 @@ exec_all_scripts()
 
 	ex_script_list=$(ls $scriptloc)
 	for script in $ex_script_list; do
-		exec_script "$script" "$1"
+		exec_script "$script" "${verbose[@]}"
 	done
 }
 
@@ -287,13 +287,12 @@ cat_script()
 
 # Install the specified script.
 # Parameters	- $1 is the script.
-#		- $2 is $verbose.
 # No return value.
 install_script()
 {
-	sudo cp "$2" "$1" "$scriptloc"
+	sudo cp "${verbose[@]}" "$1" "$scriptloc"
 	std_cmd_err_handler $?
-	sudo chmod "$2" u+x "$scriptloc/$(basename "$1")"
+	sudo chmod "${verbose[@]}" u+x "$scriptloc/$(basename "$1")"
 	std_cmd_err_handler $?
 }
 
@@ -308,16 +307,15 @@ ls_scripts()
 
 # Remove the specified script.
 # Parameters	- $1 is the script.
-#		- $2 is $verbose.
 # No return value.
 rm_script()
 {
-	sudo rm "$2" "$scriptloc/$1"
+	sudo rm "${verbose[@]}" "$scriptloc/$1"
 	std_cmd_err_handler $?
 }
 
 # Install the example scripts provided with the package.
-# Parameters	- $1 is $verbose.
+# No parameters
 # No return value.
 install_examples()
 {
@@ -326,7 +324,7 @@ install_examples()
 
 	ex_script_list=$(ls $exampleloc)
 	for script in $ex_script_list; do
-		install_script "$exampleloc/$script" "$1"
+		install_script "$exampleloc/$script" "${verbose[@]}"
 	done
 }
 
