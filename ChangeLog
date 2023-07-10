@@ -1,3 +1,10 @@
+2023-07-10 v1.3.1 Mark Grant <m.grant.prg@gmail.com>
+	* bash: Treat cli_extra_args as an array
+	pkgdata: Add script pipefail protection
+	pkgdata: Use double quotes to prevent globbing and word splitting
+	pkgdata: Remove unused variable
+	bash: Handle verbose as an array
+
 2023-06-26 v1.3.0 Mark Grant <m.grant.prg@gmail.com>
 	* bash: Use double quotes to prevent globbing and word splitting
 	bash: Remove unused variable
