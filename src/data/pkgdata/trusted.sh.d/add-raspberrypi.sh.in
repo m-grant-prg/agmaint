@@ -9,7 +9,7 @@
 #########################################################################
 #									#
 # Script ID: add-raspberrypi.sh						#
-# Author: Copyright (C) 2020-2022  Mark Grant				#
+# Author: Copyright (C) 2020-2023  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -61,6 +61,7 @@
 # 25/04/2021	MG	1.0.2	Prefer curl to wget.			#
 # 22/11/2021	MG	1.0.3	Tighten SPDX tag.			#
 # 11/02/2022	MG	1.0.4	apt-key is deprecated, use gpg.		#
+# 10/07/2023	MG	1.0.5	Fix shellcheck warnings.		#
 #									#
 #########################################################################
 
@@ -71,8 +72,7 @@ set -e
 ##################
 # Init variables #
 ##################
-readonly version=1.0.4				# Script version
-readonly outputprefix="$(basename $0): "
+readonly version=1.0.5				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 verbose="q"
