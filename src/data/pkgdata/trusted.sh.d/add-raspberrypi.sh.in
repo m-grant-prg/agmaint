@@ -62,11 +62,12 @@
 # 22/11/2021	MG	1.0.3	Tighten SPDX tag.			#
 # 11/02/2022	MG	1.0.4	apt-key is deprecated, use gpg.		#
 # 10/07/2023	MG	1.0.5	Fix shellcheck warnings.		#
+#				Add pipefail protection.		#
 #									#
 #########################################################################
 
 
-set -e
+set -eo pipefail
 
 
 ##################
