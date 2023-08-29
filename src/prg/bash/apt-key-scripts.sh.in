@@ -69,6 +69,7 @@
 # 22/11/2021	MG	1.0.3	Tighten SPDX tag.			#
 # 26/06/2023	MG	1.0.4	Fix shellcheck warnings.		#
 # 07/07/2023	MG	1.0.5	Handle verbose as an array.		#
+# 29/08/2023	MG	1.0.6	Fix shellcheck (new v0.9.0) warnings.	#
 #									#
 #########################################################################
 
@@ -76,7 +77,7 @@
 ##################
 # Init variables #
 ##################
-readonly version=1.0.5				# Script version
+readonly version=1.0.6				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 readonly scriptloc=@sysconfdir@/@pkgtarname@/trusted.sh.d	# Live scripts
@@ -146,6 +147,8 @@ std_cmd_err_handler()
 # Standard trap exit function.
 # No parameters.
 # No return value.
+# shellcheck disable=SC2317  # Do not warn about unreachable commands in trap
+# functions, they are legitimate.
 trap_exit()
 {
 	local -i exit_code=$?
