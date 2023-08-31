@@ -1,3 +1,13 @@
+2023-08-31 v1.3.2 Mark Grant <m.grant.prg@gmail.com>
+	* akscripts: Double quote to prevent globbing and word splitting
+	akscripts: Silence trap function unreachable code warning
+	agmaint: Double quote to prevent globbing and word splitting
+	agmaint: Silence trap function unreachable code warning
+	at: Upgrade bootstrap.sh to v1.5.7
+	lxcu: Remove txt2man, rely on txt2manwrap dependencies
+	actions: Remove txt2man, rely on txt2manwrap dependencies
+	actions: Run on jammy
+
 2023-07-10 v1.3.1 Mark Grant <m.grant.prg@gmail.com>
 	* bash: Treat cli_extra_args as an array
 	pkgdata: Add script pipefail protection
