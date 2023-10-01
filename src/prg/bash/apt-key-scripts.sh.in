@@ -1,14 +1,14 @@
 #! @bashlocation@
 #########################################################################
 #									#
-#	apt-key-scripts.sh is automatically generated,			#
+#	apt-key-scripts is automatically generated,			#
 #		please do not modify!					#
 #									#
 #########################################################################
 
 #########################################################################
 #									#
-# Script ID: apt-key-scripts.sh						#
+# Script ID: apt-key-scripts						#
 # Author: Copyright (C) 2020, 2021, 2023  Mark Grant			#
 #									#
 # Released under the GPLv3 only.					#
@@ -18,7 +18,7 @@
 # To manage and execute scripts for maintaining apt trusted keys and	#
 # keyrings.								#
 #									#
-# Syntax:	apt-key-scripts.sh	[ -a || --exec-all ] ||		#
+# Syntax:	apt-key-scripts	[ -a || --exec-all ] ||			#
 #					[ -c || --cat ] ||		#
 #					[ -e || --exec ] ||		#
 #					[ -h || --help ] ||		#
@@ -70,6 +70,8 @@
 # 26/06/2023	MG	1.0.4	Fix shellcheck warnings.		#
 # 07/07/2023	MG	1.0.5	Handle verbose as an array.		#
 # 29/08/2023	MG	1.0.6	Fix shellcheck (new v0.9.0) warnings.	#
+# 28/09/2023	MG	1.1.0	Drop .sh extension as script is in	#
+#				$PATH.					#
 #									#
 #########################################################################
 
@@ -77,7 +79,7 @@
 ##################
 # Init variables #
 ##################
-readonly version=1.0.6				# Script version
+readonly version=1.1.0				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 readonly scriptloc=@sysconfdir@/@pkgtarname@/trusted.sh.d	# Live scripts
