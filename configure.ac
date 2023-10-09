@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: ./configure.ac						#
-# Author: Copyright (C) 2014-2022  Mark Grant				#
+# Author: Copyright (C) 2014-2023  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -87,6 +87,7 @@
 #				Add AC_COPYRIGHT macro.			#
 # 10/02/2022	MG	1.1.7	apt-key is deprecated so use gpg - add	#
 #				a program check.			#
+# 09/10/2023	MG	1.1.8	Update Copyright for 2023.		#
 #									#
 #########################################################################
 
@@ -97,11 +98,11 @@
 #					#
 #########################################
 
-AC_COPYRIGHT([Copyright (C) 2014-2022  Mark Grant
+AC_COPYRIGHT([Copyright (C) 2014-2023  Mark Grant
 	      This script is free to copy or distribute under the terms set out
 	      in the package license. See COPYING for details.])
 
-AC_REVISION([$Revision: 1.1.7 $])
+AC_REVISION([$Revision: 1.1.8 $])
 
 AC_PREREQ([2.69])
 
