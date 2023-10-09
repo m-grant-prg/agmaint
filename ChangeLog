@@ -1,3 +1,7 @@
+2023-10-09 v1.1.10 Mark Grant <m.grant.prg@gmail.com>
+	* bash: man: Remove .sh extension
+	actions: Runs on Focal
+
 2022-02-18 v1.1.9 Mark Grant <m.grant.prg@gmail.com>
 	* pkgdata: apt-key is deprecated, use gpg
 	pkgdata: Remove OBS scripts
