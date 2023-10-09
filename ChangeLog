@@ -1,16 +1,22 @@
+2023-10-09 v1.2.3 Mark Grant <m.grant.prg@gmail.com>
+	* bash: man: Drop .sh extension from scripts in $PATH
+	lxcu: Remove txt2man, rely on txt2manwrap dependencies
+	actions: Remove txt2man, rely on txt2manwrap dependencies
+	actions: Run on focal
+
 2023-07-10 v1.2.2 Mark Grant <m.grant.prg@gmail.com>
 	* bash: Treat cli_extra_args as an array
-      pkgdata: Add script pipefail protection
-      pkgdata: Use double quotes to prevent globbing and word splitting
-      pkgdata: Remove unused variable
-      bash: Handle verbose as an array
-      bash: Use double quotes to prevent globbing and word splitting
-      bash: Remove unused variable
-      bash: Silence array to string shellcheck warning
-      bash: Use double quotes to prevent globbing and word splitting
-      bash: Remove unused variable
-      at: Allow for v1.1.1~rc1 version numbering
-      lxcu: Add in-file help-text
+	pkgdata: Add script pipefail protection
+	pkgdata: Use double quotes to prevent globbing and word splitting
+	pkgdata: Remove unused variable
+	bash: Handle verbose as an array
+	bash: Use double quotes to prevent globbing and word splitting
+	bash: Remove unused variable
+	bash: Silence array to string shellcheck warning
+	bash: Use double quotes to prevent globbing and word splitting
+	bash: Remove unused variable
+	at: Allow for v1.1.1~rc1 version numbering
+	lxcu: Add in-file help-text
 
 2023-03-29 v1.2.1 Mark Grant <m.grant.prg@gmail.com>
 	* actions: Run on ubuntu-latest
