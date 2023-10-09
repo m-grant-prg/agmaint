@@ -1,19 +1,17 @@
 #########################################################################
 #									#
-# Script ID: ./configure.ac						#
 # Author: Copyright (C) 2014-2023  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
-# Autoconfigure script file to configure agmaint project.		#
+# Autoconf script file to configure agmaint project.			#
 #									#
-# configure cmd line syntax:-						#
-# ./configure								#
+# To get the configure cmd line syntax:-				#
+# ./configure --help							#
 #									#
 # Layout: (Only relevant sections will exist).				#
-# ChangeLog : High level ChangeLog					#
 # SECTION  1: Initialisation & Setup					#
 # SECTION  2: Architecture, target and host checks			#
 # SECTION  3: Command line arguments					#
@@ -29,67 +27,6 @@
 # SECTION 13: Check for system services					#
 # SECTION 14: Additional checks & variables				#
 # SECTION 15: Specify the output files					#
-#									#
-#########################################################################
-
-#########################################################################
-#									#
-# Changelog								#
-#									#
-# Date		Author	Version	Description				#
-#									#
-# 27/10/2014	MG	1.0.1	Started versioning of this script.	#
-# 18/11/2014	MG	1.0.2	Re-structure to cope with OS		#
-#				differences. Add check for GNU getopt.	#
-# 25/11/2014	MG	1.0.3	Add support for passing overall package	#
-#				version to Makefiles.			#
-# 29/11/2014	MG	1.0.4	Remove redundant hashpling.		#
-# 26/06/2015	MG	1.0.5	Remove BSD support.			#
-# 28/09/2015	MG	1.0.6	Change to conform to AutoTools Template	#
-#				version 1.0.4.				#
-# 19/10/2015	MG	1.0.7	Restructure to conform to AutoTools	#
-#				General Template v1.0.5.		#
-# 28/04/2017	MG	1.0.8	Move man page to man section 8.		#
-#				Make AC_INIT and pkgversion AC_SUBST	#
-#				multi-line.				#
-#				Fully populate sed variable		#
-#				substitution.				#
-# 01/12/2017	MG	1.0.9	Add SPDX license tags to source files.	#
-# 09/02/2018	MG	1.0.10	Shorten directory names to reduce	#
-#				overall path length.			#
-#				Update minimum AutoTools version.	#
-#				Standardise configure.ac and macro	#
-#				directory.				#
-#				Use automake sub-directory and tar	#
-#				Posix format directives.		#
-# 07/04/2018	MG	1.0.11	Change package versioning to use	#
-#				hard-coded value. This is due to the	#
-#				use of github which produces source	#
-#				tarballs which can be used for package	#
-#				generation. These tarballs are used	#
-#				outside of git so git versioning is not	#
-#				possible, hence the hard-coded value.	#
-#				Because of this, other packaging should	#
-#				probably use the source tarball rather	#
-#				than a dist tarball.			#
-# 22/09/2019	MG	1.1.0	Re-vamp to new standard layout.		#
-#				Remove v from package version string.	#
-# 21/05/2020	MG	1.1.1	Make package tarname available for	#
-#				substitution.				#
-#				Add sysconfdir and pkgdatadir support.	#
-# 14/06/2020	MG	1.1.2	Correct program checks.			#
-# 14/03/2021	MG	1.1.3	Add wget check.				#
-# 25/04/2021	MG	1.1.4	Change wget to curl.			#
-# 11/11/2021	MG	1.1.5	If git is available and we are inside a	#
-#				git tree then use git describe to add	#
-#				further package version information.	#
-# 22/11/2021	MG	1.1.6	Tighten SPDX tag.			#
-#				Add AC_COPYRIGHT macro.			#
-# 10/02/2022	MG	1.1.7	apt-key is deprecated so use gpg - add	#
-#				a program check.			#
-# 09/10/2022	MG	1.1.8	Separate AutoTools generated files from	#
-#				project root.				#
-# 29/03/2023	MG	1.1.9	Update Copyright for 2023.		#
 #									#
 #########################################################################
 

@@ -18,16 +18,7 @@
 # To manage and execute scripts for maintaining apt trusted keys and	#
 # keyrings.								#
 #									#
-# Syntax:	apt-key-scripts	[ -a || --exec-all ] ||			#
-#					[ -c || --cat ] ||		#
-#					[ -e || --exec ] ||		#
-#					[ -h || --help ] ||		#
-#					[ -i || --install ] ||		#
-#					[ -l || --ls ] ||		#
-#					[ -r || --rm ] ||		#
-#					[ -v || --verbose ] ||		#
-#					[ -V || --version ] ||		#
-#					[ -x || --install-examples ]	#
+# Syntax:	See usage().						#
 #									#
 # Exit codes used:-							#
 # Bash standard Exit Codes:	0 - success				#
@@ -57,24 +48,6 @@
 #									#
 #########################################################################
 
-#########################################################################
-#									#
-# Changelog								#
-#									#
-# Date		Author	Version	Description				#
-#									#
-# 22/05/2020	MG	1.0.1	Created.				#
-# 14/06/2020	MG	1.0.2	Ensure functions called by others	#
-#				appear first.				#
-# 22/11/2021	MG	1.0.3	Tighten SPDX tag.			#
-# 26/06/2023	MG	1.0.4	Fix shellcheck warnings.		#
-# 07/07/2023	MG	1.0.5	Handle verbose as an array.		#
-# 29/08/2023	MG	1.0.6	Fix shellcheck (new v0.9.0) warnings.	#
-# 28/09/2023	MG	1.1.0	Drop .sh extension as script is in	#
-#				$PATH.					#
-#									#
-#########################################################################
-
 
 ##################
 # Init variables #
@@ -96,9 +69,11 @@ verbose=()
 # -h --help output.
 # No parameters
 # No return value
-usage ()
+usage()
 {
 cat << EOF
+Usage is $0 [-a] [-c FILENAME] [-e FILENAME] [-h] [-i FILENAME] \\
+		[-l] [-r FILENAME] [-v] [-V] [-x]
 Usage is $0 [OPTIONS]
 	[OPTIONS] are:-
 	-a or --exec-all Execute all the available scripts

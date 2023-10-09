@@ -8,7 +8,6 @@
 
 #########################################################################
 #									#
-# Script ID: add-hermes.sh						#
 # Author: Copyright (C) 2020-2023  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
@@ -19,9 +18,7 @@
 # directory. This is designed to be run via the apt-key-scripts.sh	#
 # script but can be run manually.					#
 #									#
-# Syntax:	add-hermes.sh	[ -h || --help ] ||			#
-#				[ -v || --verbose ] ||			#
-#				[ -V || --version ] 			#
+# Syntax:	See usage().						#
 #									#
 # Exit codes used:-							#
 # Bash standard Exit Codes:	0 - success				#
@@ -51,23 +48,6 @@
 #									#
 #########################################################################
 
-#########################################################################
-#									#
-# Changelog								#
-#									#
-# Date		Author	Version	Description				#
-#									#
-# 22/05/2020	MG	1.0.1	Created.				#
-# 14/03/2021	MG	1.0.2	Use hermes FQDN otherwise it does not	#
-#				work in Ubuntu containers.		#
-# 25/04/2021	MG	1.0.3	Prefer curl to wget.			#
-# 22/11/2021	MG	1.0.4	Tighten SPDX tag.			#
-# 10/02/2022	MG	1.0.5	apt-key is deprecated, use gpg.		#
-# 10/07/2023	MG	1.0.6	Fix shellcheck warnings.		#
-#				Add pipefail protection.		#
-#									#
-#########################################################################
-
 
 set -eo pipefail
 
@@ -88,9 +68,10 @@ verbose="q"
 # -h --help output.
 # No parameters
 # No return value
-usage ()
+usage()
 {
 cat << EOF
+Usage is $0 {-h|-v|-V}
 Usage is $0 [OPTIONS]
 	[OPTIONS] are:-
 	-h or --help Displays usage information
