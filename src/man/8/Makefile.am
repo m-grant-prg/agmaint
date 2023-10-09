@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: src/man/8/Makefile.am					#
-# Author: Copyright (C) 2014-2021  Mark Grant				#
+# Author: Copyright (C) 2014-2021, 2023  Mark Grant			#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -36,11 +36,13 @@
 # 22/05/2020	MG	1.0.9	Rename script to have .sh extension.	#
 #				Add apt-key-scripts.sh man page.	#
 # 22/11/2021	MG	1.0.10	Tighten SPDX tag.			#
+# 09/10/2023	MG	1.0.11	Drop .sh extension from scripts in	#
+#				$PATH.					#
 #									#
 #########################################################################
 
 
-agmaint.sh.8 apt-key-scripts.sh.8: Makefile
+agmaint.8 apt-key-scripts.8: Makefile
 	mkdir -p $(@D)
 	rm -f $@ $@.tmp
 	$(edit) $(srcdir)/$(@F).man.in > $@.tmp
@@ -59,13 +61,13 @@ agmaint.sh.8 apt-key-scripts.sh.8: Makefile
 	txt2manwrap $(@F) $$section "agmaint Manual" $@.tmp $@
 	rm -f $@.tmp
 
-agmaint.sh.8: $(srcdir)/agmaint.sh.8.man.in
-apt-key-scripts.sh.8: $(srcdir)/apt-key-scripts.sh.8.man.in
+agmaint.8: $(srcdir)/agmaint.8.man.in
+apt-key-scripts.8: $(srcdir)/apt-key-scripts.8.man.in
 
-man_MANS = agmaint.sh.8 apt-key-scripts.sh.8
+man_MANS = agmaint.8 apt-key-scripts.8
 
-EXTRA_DIST = $(srcdir)/agmaint.sh.8.man.in $(srcdir)/apt-key-scripts.sh.8.man.in
+EXTRA_DIST = $(srcdir)/agmaint.8.man.in $(srcdir)/apt-key-scripts.8.man.in
 
 
-CLEANFILES = *.tmp agmaint.sh.8 apt-key-scripts.sh.8
+CLEANFILES = *.tmp agmaint.8 apt-key-scripts.8
 

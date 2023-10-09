@@ -1,14 +1,14 @@
 #! @bashlocation@
 #########################################################################
 #									#
-#	agmaint.sh is automatically generated,				#
+#	agmaint is automatically generated,				#
 #		please do not modify!					#
 #									#
 #########################################################################
 
 #########################################################################
 #									#
-# Script ID: agmaint.sh							#
+# Script ID: agmaint							#
 # Author: Copyright (C) 2014-2017, 2019-2021, 2023  Mark Grant		#
 #									#
 # Released under the GPLv3 only.					#
@@ -17,7 +17,7 @@
 # Purpose:								#
 # To simplify the running of daily apt-get maintenance commands.	#
 #									#
-# Syntax:	agmaint.sh [ -h || --help ] || [ -V || --version ]	#
+# Syntax:	agmaint [ -h || --help ] || [ -V || --version ]		#
 #									#
 # Exit codes used:-							#
 # Bash standard Exit Codes:	0 - success				#
@@ -83,6 +83,8 @@
 # 22/11/2021	MG	1.1.3	Tighten SPDX tag.			#
 # 26/06/2023	MG	1.1.4	Fix shellcheck warnings.		#
 # 10/07/2023	MG	1.1.5	Treat cli_extra_args as an array.	#
+# 09/10/2023	MG	1.1.6	Drop .sh extension from scripts in	#
+#				$PATH.					#
 #									#
 #########################################################################
 
@@ -90,7 +92,7 @@
 ##################
 # Init variables #
 ##################
-readonly version=1.1.5				# Script version
+readonly version=1.1.6				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 cli_extra_args=()
