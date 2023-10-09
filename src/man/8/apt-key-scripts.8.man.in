@@ -1,8 +1,8 @@
 NAME
-apt-key-scripts.sh - A script to manage scripts to retrieve APT keys and store
+apt-key-scripts - A script to manage scripts to retrieve APT keys and store
 them in APT keyrings.
 SYNOPSIS
-apt-key-scripts.sh [OPTION]
+apt-key-scripts [OPTION]
 DESCRIPTION
 This is a helper script to simplify management of apt keys. The process is
 envisaged to go something like this:-
@@ -20,12 +20,12 @@ curl -fsSL"$verbose" http://hermes.mgent.home/aptrepos/hermes.gpg \
 
 2 ... Install the script by
 .RS
-apt-key-scripts.sh --install 'script_name'
+apt-key-scripts --install 'script_name'
 .RE
 
 3 ... Run the script by
 .RS
-apt-key-scripts.sh --exec 'script_name'
+apt-key-scripts --exec 'script_name'
 .RE
 OPTIONS
 -a or --exec-all  Execute all the available scripts
@@ -57,10 +57,10 @@ BUGS
 Report bugs to <m.grant.prg@gmail.com>
 EXAMPLES
 Example scripts can be found in @pkgdatadir@/trusted.sh.d
-AUTHOR
+UTHOR
 Written by Mark Grant.
 COPYRIGHT
-Copyright (C) 2020-2022 Mark Grant.
+Copyright (C) 2020-2023 Mark Grant.
 .br
 License GPLv3: GNU GPL version 3 only
 .br

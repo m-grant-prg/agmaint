@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: src/prg/bash/Makefile.am					#
-# Author: Copyright (C) 2014-2021  Mark Grant				#
+# Author: Copyright (C) 2014-2021, 2023  Mark Grant			#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -32,23 +32,25 @@
 # 21/05/2020	MG	1.0.9	Change script extension .sh		#
 #				Add apt-key-scripts.sh			#
 # 22/11/2021	MG	1.0.10	Tighten SPDX tag.			#
+# 09/10/2023	MG	1.0.11	Drop .sh extension for scripts in	#
+#				$PATH.					#
 #									#
 #########################################################################
 
 
-agmaint.sh apt-key-scripts.sh: Makefile
+agmaint apt-key-scripts: Makefile
 	mkdir -p $(@D)
 	rm -f $@ $@.tmp
 	test -f ./$@.sh.in || srcdir=$(srcdir)/; \
-	$(edit) $${srcdir}$(@F).in > $@.tmp
+	$(edit) $${srcdir}$(@F).sh.in > $@.tmp
 	mv $@.tmp $@
 	chmod a+x $@
-agmaint.sh: $(srcdir)/agmaint.sh.in
-apt-key-scripts.sh: $(srcdir)/apt-key-scripts.sh.in
+agmaint: $(srcdir)/agmaint.sh.in
+apt-key-scripts: $(srcdir)/apt-key-scripts.sh.in
 
-sbin_SCRIPTS = agmaint.sh apt-key-scripts.sh
+sbin_SCRIPTS = agmaint apt-key-scripts
 
 EXTRA_DIST = $(srcdir)/agmaint.sh.in $(srcdir)/apt-key-scripts.sh.in
 
-CLEANFILES = *.tmp agmaint.sh apt-key-scripts.sh
+CLEANFILES = *.tmp agmaint apt-key-scripts
 
