@@ -1,3 +1,14 @@
+2023-10-10 v1.3.3 Mark Grant <m.grant.prg@gmail.com>
+	* pkgdata: add-raspberrypi.sh v1.1.0
+	pkgdata: add-mgrant-utils-ppa.sh v1.1.0
+	pkgdata: add-hermes.sh v1.1.0
+	at: configure v1.2.0
+	all: Remove most in-file ChangeLogs and versioning
+	bash: man: Drop .sh from scripts in $PATH
+	Merge pull request #1 from m-grant-prg/dependabot/github_actions/actions/checkout-4
+	build(deps): bump actions/checkout from 2 to 4
+	github: Add dependabot version update config
+
 2023-08-31 v1.3.2 Mark Grant <m.grant.prg@gmail.com>
 	* akscripts: Double quote to prevent globbing and word splitting
 	akscripts: Silence trap function unreachable code warning
