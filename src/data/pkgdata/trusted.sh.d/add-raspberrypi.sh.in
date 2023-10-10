@@ -55,7 +55,7 @@ set -eo pipefail
 ##################
 # Init variables #
 ##################
-readonly version=1.0.5				# Script version
+readonly version=1.1.0				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 verbose="q"
