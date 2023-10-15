@@ -1,6 +1,7 @@
 NAME
 agmaint - agmaint script
 SYNOPSIS
+agmaint {-h|-V}
 agmaint [OPTION]
 DESCRIPTION
 A script to automate running of daily apt-get maintenance commands.

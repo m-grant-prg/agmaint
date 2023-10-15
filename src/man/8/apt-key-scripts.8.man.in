@@ -2,6 +2,8 @@ NAME
 apt-key-scripts - A script to manage scripts to retrieve APT keys and store them
 in APT keyrings.
 SYNOPSIS
+apt-key-scripts [-a] [-c FILENAME] [-e FILENAME] [-h] [-i FILENAME] \\
+		  [-l] [-r FILENAME] [-v] [-V] [-x]
 apt-key-scripts [OPTION]
 DESCRIPTION
 This is a helper script to simplify management of apt keys. The process is
