@@ -1,3 +1,6 @@
+2023-10-16 v1.3.4 Mark Grant <m.grant.prg@gmail.com>
+	* man: Update CL syntax
+
 2023-10-10 v1.3.3 Mark Grant <m.grant.prg@gmail.com>
 	* pkgdata: add-raspberrypi.sh v1.1.0
 	pkgdata: add-mgrant-utils-ppa.sh v1.1.0
