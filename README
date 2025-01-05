@@ -2,7 +2,7 @@
 APT-GET Regular Update Helper Script
 ====================================
 
-Author - Copyright (C) 2014-2020 Mark Grant
+Author - Copyright (C) 2014-2020, 2025 Mark Grant
 
 --------
 Contents
@@ -29,6 +29,7 @@ The script sequentially invokes:-
 
 	apt-get upgrade
 	apt-get autoclean
+	apt-get clean
 	apt-get check
 	apt-get autoremove
 
