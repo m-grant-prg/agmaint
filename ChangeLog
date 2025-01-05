@@ -1,3 +1,8 @@
+2025-01-05 v1.3.6 Mark Grant <m.grant.prg@gmail.com>
+	* at: Update Copyright for 2025
+	docs: Add apt-get clean to README
+	bash: Add apt-get clean command
+
 2024-04-28 v1.3.5 Mark Grant <m.grant.prg@gmail.com>
 	* git: Correct reasoning in some gitignore files
 	at: Update Copyright for 2024
