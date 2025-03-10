@@ -182,6 +182,11 @@ if test "x$CAT" = "xno" ; then
 	AC_MSG_WARN(cat not found - needed at run time)
 fi
 
+AC_CHECK_PROG(CURL, curl, yes, no)
+if test "x$CURL" = "xno" ; then
+	AC_MSG_WARN(curl not found - needed at run time)
+fi
+
 AC_CHECK_PROG([GETOPT], [getopt], [yes], [no])
 if test "x$GETOPT" = "xno" ; then
 	AC_MSG_WARN(getopt not found - needed at run time)
@@ -195,11 +200,6 @@ fi
 AC_CHECK_PROG(PRINTF, printf, yes, no)
 if test "x$PRINTF" = "xno" ; then
 	AC_MSG_WARN(printf not found - needed at run time)
-fi
-
-AC_CHECK_PROG(CURL, curl, yes, no)
-if test "x$CURL" = "xno" ; then
-	AC_MSG_WARN(curl not found - needed at run time)
 fi
 
 
