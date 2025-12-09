@@ -8,7 +8,7 @@
 
 #########################################################################
 #									#
-# Author: Copyright (C) 2014-2017, 2019-2021, 2023, 2024  Mark Grant	#
+# Author: Copyright (C) 2014-2017, 2019-2021, 2023-2025  Mark Grant	#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -50,7 +50,7 @@
 ##################
 # Init variables #
 ##################
-readonly version=1.2.0				# Script version
+readonly version=1.2.1				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 cli_extra_args=()
@@ -66,9 +66,10 @@ cli_extra_args=()
 usage()
 {
 cat << EOF
-Usage is $0 {-h|-V}
-Usage is $0 [OPTIONS]
-	[OPTIONS] are:-
+Usage is:-
+$(basename "$0") {-h|-V}
+Usage is:-
+$(basename "$0") [options]
 	-h or --help Displays usage information
 	-V or --version Displays version information
 EOF

@@ -9,7 +9,7 @@
 #########################################################################
 #									#
 # Script ID: apt-key-scripts						#
-# Author: Copyright (C) 2020, 2021, 2023  Mark Grant			#
+# Author: Copyright (C) 2020, 2021, 2023, 2025  Mark Grant		#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -52,7 +52,7 @@
 ##################
 # Init variables #
 ##################
-readonly version=1.1.0				# Script version
+readonly version=1.1.1				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 readonly scriptloc=@sysconfdir@/@pkgtarname@/trusted.sh.d	# Live scripts
@@ -72,10 +72,11 @@ verbose=()
 usage()
 {
 cat << EOF
-Usage is $0 [-a] [-c FILENAME] [-e FILENAME] [-h] [-i FILENAME] \\
+Usage is:-
+$(basename "$0") [-a] [-c FILENAME] [-e FILENAME] [-h] [-i FILENAME] \\
 		[-l] [-r FILENAME] [-v] [-V] [-x]
-Usage is $0 [OPTIONS]
-	[OPTIONS] are:-
+Usage is:-
+$(basename "$0") [options]
 	-a or --exec-all Execute all the available scripts
 	-c or --cat 'filename' Cat the specified script
 	-e or --exec 'filename' Execute the specified script
