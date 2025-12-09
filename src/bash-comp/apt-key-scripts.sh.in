@@ -1,0 +1,69 @@
+# shellcheck shell=bash
+#########################################################################
+#									#
+# Author: Copyright (C) 2025  Mark Grant				#
+#									#
+# Released under the GPLv3 only.					#
+# SPDX-License-Identifier: GPL-3.0-only					#
+#									#
+# Purpose:								#
+# Bash completion script.						#
+#									#
+#########################################################################
+
+
+set -o pipefail
+
+
+_apt_key_scripts_get_script_name()
+{
+	local OPTS
+	local scriptloc=@sysconfdir@/@pkgtarname@/trusted.sh.d
+	readonly scriptloc
+
+	if [[ ! -d $scriptloc ]]; then
+		return 0
+	fi
+	OPTS=$(find $scriptloc/* -maxdepth 0 -type f -print0 2>/dev/null \
+		| xargs -0 basename -a 2>/dev/null) || return
+	# shellcheck disable=SC2207  # This is _the_ bash completion pattern,
+	# so leave it be.
+	COMPREPLY=($(compgen -W "${OPTS[*]}" -- "$1"))
+}
+
+
+_apt_key_scripts()
+{
+	local cur prev OPTS
+
+	COMPREPLY=()
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	prev="${COMP_WORDS[COMP_CWORD-1]}"
+	case $prev in
+	-c|--cat)
+		_apt_key_scripts_get_script_name "$cur"
+		return 0
+		;;
+	-e|--exec)
+		_apt_key_scripts_get_script_name "$cur"
+		return 0
+		;;
+	-i|--install)
+		_apt_key_scripts_get_script_name "$cur"
+		return 0
+		;;
+	-r|--rm)
+		_apt_key_scripts_get_script_name "$cur"
+		return 0
+		;;
+	esac
+	OPTS="-a -c -e -h -i -l -r -v -V -x"
+	OPTS+=" --exec-all --cat --exec --help --install --ls --rm --verbose"
+	OPTS+=" --version --install-examples"
+	# shellcheck disable=SC2207  # This is _the_ bash completion pattern,
+	# so leave it be.
+	COMPREPLY=( $(compgen -W "${OPTS[*]}" -- "$cur") )
+	return 0
+}
+complete -F _apt_key_scripts apt-key-scripts
+
