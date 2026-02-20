@@ -9,7 +9,7 @@
 #########################################################################
 #									#
 # Script ID: apt-key-scripts						#
-# Author: Copyright (C) 2020, 2021, 2023, 2025  Mark Grant		#
+# Author: Copyright (C) 2020, 2021, 2023, 2025, 2026  Mark Grant	#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -52,7 +52,7 @@
 ##################
 # Init variables #
 ##################
-readonly version=1.1.1				# Script version
+readonly version=1.1.2				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 readonly scriptloc=@sysconfdir@/@pkgtarname@/trusted.sh.d	# Live scripts
@@ -148,8 +148,8 @@ proc_CL()
 	local GETOPTTEMP
 	local tmp
 
-	tmp="getopt -o ac:e:hi:lr:vVx "
-	tmp+="--long exec-all,cat:,exec:,help,install:,ls,rm:,verbose,version,"
+	tmp="getopt -o a:c:e:hi:l:r:vVx "
+	tmp+="--long exec-all:,cat:,exec:,help,install:,ls:,rm:,verbose,version,"
 	tmp+="install-examples"
 	GETOPTTEMP=$($tmp -n "$0" -- "$@")
 	std_cmd_err_handler $?
@@ -161,9 +161,9 @@ proc_CL()
 		case "$1" in
 		-a|--exec-all)
 			if $process ; then
-				exec_all_scripts
+				exec_all_scripts "$2"
 			fi
-			shift
+			shift 2
 			;;
 		-c|--cat)
 			if $process ; then
@@ -191,9 +191,9 @@ proc_CL()
 			;;
 		-l|--ls)
 			if $process ; then
-				ls_scripts
+				ls_scripts "$2"
 			fi
-			shift
+			shift 2
 			;;
 		-r|--rm)
 			if $process ; then
@@ -239,20 +239,19 @@ proc_CL()
 # No return value.
 exec_script()
 {
-	sudo $scriptloc/"$1" "${verbose[@]}"
+	sudo "$1" "${verbose[@]}"
 	std_cmd_err_handler $?
 }
 
 # Execute all available scripts.
-# No parameters
+# Parameters	- $1 is the script directory.
 # No return value.
 exec_all_scripts()
 {
-	local ex_script_list
+	local IFS=$'\n'
 	local script
 
-	ex_script_list=$(ls $scriptloc)
-	for script in $ex_script_list; do
+	for script in "$1"*; do
 		exec_script "$script" "${verbose[@]}"
 	done
 }
@@ -262,7 +261,7 @@ exec_all_scripts()
 # No return value.
 cat_script()
 {
-	cat "$scriptloc/$1"
+	cat "$1"
 	std_cmd_err_handler $?
 }
 
@@ -278,11 +277,12 @@ install_script()
 }
 
 # List the script location directory.
+# Parameters	- $1 is the script directory.
 # No parameters.
 # No return value.
 ls_scripts()
 {
-	ls -l "$scriptloc"
+	ls -l "$1"
 	std_cmd_err_handler $?
 }
 
@@ -291,7 +291,7 @@ ls_scripts()
 # No return value.
 rm_script()
 {
-	sudo rm "${verbose[@]}" "$scriptloc/$1"
+	sudo rm "${verbose[@]}" "$1"
 	std_cmd_err_handler $?
 }
 

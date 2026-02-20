@@ -1,7 +1,7 @@
 # shellcheck shell=bash
 #########################################################################
 #									#
-# Author: Copyright (C) 2025  Mark Grant				#
+# Author: Copyright (C) 2025, 2026  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -15,20 +15,38 @@
 set -o pipefail
 
 
-_apt_key_scripts_get_script_name()
+_apt_key_scripts_get_script_name_or_dir()
 {
-	local OPTS
+	local comp_action
+	local cur=$1
+	local i work_dir
 	local scriptloc=@sysconfdir@/@pkgtarname@/trusted.sh.d
-	readonly scriptloc
 
-	if [[ ! -d $scriptloc ]]; then
-		return 0
+	if [[ $2 == "name" ]]; then
+		comp_action="-f"
+	else
+		comp_action="-d"
+		scriptloc=${scriptloc%/*}
 	fi
-	OPTS=$(find $scriptloc/* -maxdepth 0 -type f -print0 2>/dev/null \
-		| xargs -0 basename -a 2>/dev/null) || return
+
+	work_dir=$(pwd)
+	if [[ -d $scriptloc ]]; then
+		# shellcheck disable=SC2164  # We want to fall through if cd
+		# fails.
+		cd "$scriptloc" 2>/dev/null
+	fi
+
+	local IFS=$'\n'
+	compopt -o filenames
 	# shellcheck disable=SC2207  # This is _the_ bash completion pattern,
 	# so leave it be.
-	COMPREPLY=($(compgen -W "${OPTS[*]}" -- "$1"))
+	COMPREPLY=( $(compgen $comp_action -- "$cur") )
+	for i in "${!COMPREPLY[@]}"; do
+		COMPREPLY[i]=$(realpath "${COMPREPLY[i]}")
+	done
+
+	cd "$work_dir" || return
+
 }
 
 
@@ -40,20 +58,28 @@ _apt_key_scripts()
 	cur="${COMP_WORDS[COMP_CWORD]}"
 	prev="${COMP_WORDS[COMP_CWORD-1]}"
 	case $prev in
+	-a|--exec-all)
+		_apt_key_scripts_get_script_name_or_dir "$cur" "dir"
+		return 0
+		;;
 	-c|--cat)
-		_apt_key_scripts_get_script_name "$cur"
+		_apt_key_scripts_get_script_name_or_dir "$cur" "name"
 		return 0
 		;;
 	-e|--exec)
-		_apt_key_scripts_get_script_name "$cur"
+		_apt_key_scripts_get_script_name_or_dir "$cur" "name"
 		return 0
 		;;
 	-i|--install)
-		_apt_key_scripts_get_script_name "$cur"
+		_apt_key_scripts_get_script_name_or_dir "$cur" "name"
+		return 0
+		;;
+	-l|--ls)
+		_apt_key_scripts_get_script_name_or_dir "$cur" "dir"
 		return 0
 		;;
 	-r|--rm)
-		_apt_key_scripts_get_script_name "$cur"
+		_apt_key_scripts_get_script_name_or_dir "$cur" "name"
 		return 0
 		;;
 	esac
