@@ -14,7 +14,9 @@
 # SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
-# To add a hermes apt key to @datarootdir@/keyrings directory.		#
+# To add a hermes apt pgp key to @datarootdir@/keyrings directory and	#
+# add a link to it with a gpg extension for the APTKEYRINGS variable in	#
+# pbuilder.								#
 # This is designed to be run via the apt-key-scripts.sh script but can	#
 # be run manually.							#
 #									#
@@ -58,6 +60,7 @@ set -o pipefail
 readonly version=1.2.0				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
+readonly cwd=$(pwd)
 verbose="q"
 
 
@@ -99,6 +102,7 @@ output()
 # No return value.
 script_exit()
 {
+	cd "$cwd"
 	exit "$1"
 }
 
@@ -186,7 +190,11 @@ proc_CL "$@"
 # Hermes
 curl -fsSL"$verbose" http://hermes.mgent.home/aptrepos/hermes.gpg \
 	| gpg --dearmor \
-	| sudo tee @datarootdir@/keyrings/hermes-keyring.gpg > /dev/null
+	| sudo tee @datarootdir@/keyrings/hermes-keyring.pgp > /dev/null
+std_cmd_err_handler $?
+cd @datarootdir@/keyrings
+std_cmd_err_handler $?
+ln -s hermes-keyring.pgp hermes-keyring.gpg
 std_cmd_err_handler $?
 
 script_exit 0
