@@ -1,0 +1,213 @@
+#! @bashlocation@
+#########################################################################
+#									#
+#	add-obs.sh is automatically generated,				#
+#		please do not modify!					#
+#									#
+#########################################################################
+
+#########################################################################
+#									#
+# Author: Copyright (C) 2020-2023, 2026  Mark Grant			#
+#									#
+# Released under the GPLv3 only.					#
+# SPDX-License-Identifier: GPL-3.0-only					#
+#									#
+# Purpose:								#
+# To add an openSUSE Build Service apt pgp key in datarootdir/keyrings	#
+# and add a link to it with a gpg extension for the APTKEYRINGS		#
+# variable in pbuilder.							#
+# This is designed to be run via the apt-key-scripts.sh script but can	#
+# be run manually.							#
+#									#
+# Syntax:	See usage().						#
+#									#
+# Exit codes used:-							#
+# Bash standard Exit Codes:	0 - success				#
+#				1 - general failure			#
+# User-defined exit code range is 64 - 113				#
+#	C/C++ Semi-standard exit codes from sysexits.h range is 64 - 78	#
+#		EX_USAGE	64	command line usage error	#
+#		EX_DATAERR	65	data format error		#
+#		EX_NOINPUT	66	cannot open input		#
+#		EX_NOUSER	67	addressee unknown		#
+#		EX_NOHOST	68	host name unknown		#
+#		EX_UNAVAILABLE	69	service unavailable		#
+#		EX_SOFTWARE	70	internal software error		#
+#		EX_OSERR	71	system error (e.g., can't fork)	#
+#		EX_OSFILE	72	critical OS file missing	#
+#		EX_CANTCREAT	73	can't create (user) output file	#
+#		EX_IOERR	74	input/output error		#
+#		EX_TEMPFAIL	75	temp failure; user is invited	#
+#					to retry			#
+#		EX_PROTOCOL	76	remote error in protocol	#
+#		EX_NOPERM	77	permission denied		#
+#		EX_CONFIG	78	configuration error		#
+#	User-defined (here) exit codes range 79 - 113:			#
+#		None							#
+#									#
+# Further Info:								#
+#									#
+#########################################################################
+
+
+set -o pipefail
+
+
+##################
+# Init variables #
+##################
+readonly version=1.0.0				# Script version
+readonly packageversion=@pkgversion@		# Package version
+
+cwd=$(pwd) || exit $?
+readonly cwd
+verbose=""
+
+
+#############
+# Functions #
+#############
+
+# -h --help output.
+# No parameters
+# No return value
+usage()
+{
+cat << EOF
+Usage is $0 {-h|-v|-V}
+Usage is $0 [OPTIONS]
+	[OPTIONS] are:-
+	-h or --help Displays usage information
+	-v or --verbose Display more verbose output
+	-V or --version Displays version information
+EOF
+}
+
+# Standard function to emit messages depending on various parameters.
+# Parameters -	$1 What:-	The message to emit.
+#		$2 Where:-	stdout == 0
+#				stderr == 1
+# No return value.
+output()
+{
+	if (( !$2 )); then
+		printf "%s\n" "$1"
+	else
+		printf "%s\n" "$1" 1>&2
+	fi
+}
+
+# Standard function to tidy up and return exit code.
+# Parameters - 	$1 is the exit code.
+# No return value.
+script_exit()
+{
+	# shellcheck disable=SC2164  # Do not warn about cd failures as we are
+	# exiting anyway.
+	cd "$cwd"
+	exit "$1"
+}
+
+# Standard function to test command error and exit if non-zero.
+# Parameters - 	$1 is the exit code, (normally $? from the preceeding command).
+# No return value.
+std_cmd_err_handler()
+{
+	if (( $1 )); then
+		script_exit "$1"
+	fi
+}
+
+# Standard trap exit function.
+# No parameters.
+# No return value.
+# shellcheck disable=SC2317  # Do not warn about unreachable commands in trap
+# functions, they are legitimate.
+trap_exit()
+{
+	local -i exit_code=$?
+	local msg
+
+	msg="Script terminating with exit code $exit_code due to trap received."
+	output "$msg" 1
+	script_exit "$exit_code"
+}
+
+# Setup trap.
+trap trap_exit SIGHUP SIGINT SIGQUIT SIGTERM
+
+# Process command line arguments with GNU getopt.
+# Parameters -	$1 is the command line.
+# No return value.
+proc_CL()
+{
+	local GETOPTTEMP
+	local tmpGETOPTTEMP
+
+	tmpGETOPTTEMP="getopt -o hvV --long help,verbose,version"
+	GETOPTTEMP=$($tmpGETOPTTEMP -n "$0" -- "$@")
+	std_cmd_err_handler $?
+
+	eval set -- "$GETOPTTEMP"
+	std_cmd_err_handler $?
+
+	while true; do
+		case "$1" in
+		-h|--help)
+			usage
+			shift
+			script_exit 0
+			;;
+		-v|--verbose)
+			verbose="-v"
+			shift
+			;;
+		-V|--version)
+			printf "Script version %s\n" $version
+			printf "Package version %s\n" $packageversion
+			shift
+			script_exit 0
+			;;
+		--)	shift
+			break
+			;;
+		*)	output "Internal error." 1
+			script_exit 64
+			;;
+		esac
+	done
+
+	# Script does not accept other arguments.
+	if (( $# )); then
+		output "Invalid argument." 1
+		script_exit 64
+	fi
+}
+
+
+########
+# Main #
+########
+
+proc_CL "$@"
+
+# Get the major version number of current Debian stable release
+deb_rel=$(curl -s https://ftp.debian.org/debian/dists/stable/Release | awk -F': ' '/^Version:/ {print $2}' | cut -d. -f1)
+std_cmd_err_handler $?
+
+# OBS
+curl -fsSL $verbose \
+	https://download.opensuse.org/repositories/home:m-grant-prg/Debian_"$deb_rel"/Release.key \
+	| gpg --dearmor \
+	| sudo tee @datarootdir@/keyrings/home_m-grant-prg.pgp 	> /dev/null
+std_cmd_err_handler $?
+# shellcheck disable=SC2164  # Do not warn about cd failures as we are already
+# testing for failures.
+cd @datarootdir@/keyrings
+std_cmd_err_handler $?
+ln $verbose -s home_m-grant-prg.pgp home_m-grant-prg.gpg
+std_cmd_err_handler $?
+
+script_exit 0
+
