@@ -103,6 +103,8 @@ output()
 # No return value.
 script_exit()
 {
+	# shellcheck disable=SC2164  # Do not warn about cd failures as we are
+	# exiting anyway.
 	cd "$cwd"
 	exit "$1"
 }
@@ -200,6 +202,8 @@ sudo gpg --export --no-default-keyring \
 std_cmd_err_handler $?
 rm -f @datarootdir@/keyrings/tmp-keyring.gpg
 std_cmd_err_handler $?
+# shellcheck disable=SC2164  # Do not warn about cd failures as we are already
+# testing for failures.
 cd @datarootdir@/keyrings
 std_cmd_err_handler $?
 ln -s hermes-keyring.pgp hermes-keyring.gpg
