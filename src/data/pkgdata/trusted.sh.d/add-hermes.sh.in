@@ -60,7 +60,8 @@ set -o pipefail
 readonly version=1.2.0				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
-readonly cwd=$(pwd)
+cwd=$(pwd) || exit $?
+readonly cwd
 verbose="q"
 
 
