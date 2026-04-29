@@ -14,7 +14,9 @@
 # SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
-# To add a raspberrypi.org apt key in datarootdir/keyrings		#
+# To add a raspberrypi.org apt pgp key in datarootdir/keyrings and add	#
+# a link to it with a gpg extension for the APTKEYRINGS variable in	#
+# pbuilder.								#
 # This is designed to be run via the apt-key-scripts.sh script but can	#
 # be run manually.							#
 #									#
@@ -58,6 +60,8 @@ set -o pipefail
 readonly version=1.2.0				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
+cwd=$(pwd) || exit $?
+readonly cwd
 verbose="q"
 
 
@@ -99,6 +103,7 @@ output()
 # No return value.
 script_exit()
 {
+	cd "$cwd"
 	exit "$1"
 }
 
@@ -186,7 +191,11 @@ proc_CL "$@"
 # rapberrypi.org/debian
 curl -fsSL"$verbose" https://archive.raspberrypi.org/debian/raspberrypi.gpg.key \
 	| gpg --dearmor \
-	| sudo tee @datarootdir@/keyrings/raspberrypi-keyring.gpg > /dev/null
+	| sudo tee @datarootdir@/keyrings/raspberrypi-keyring.pgp > /dev/null
+std_cmd_err_handler $?
+cd @datarootdir@/keyrings
+std_cmd_err_handler $?
+ln -s raspberrypi-keyring.pgp raspberrypi-keyring.gpg
 std_cmd_err_handler $?
 
 script_exit 0
