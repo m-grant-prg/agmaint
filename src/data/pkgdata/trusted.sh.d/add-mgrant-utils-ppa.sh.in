@@ -14,9 +14,10 @@
 # SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
-# To add apt keys for package signer and ppa for the Launchpad		#
-# m-grant-prg utils PPA. This is designed to be run via the		#
-# apt-key-scripts.sh script but can be run manually.			#
+# To add an apt keyring to datarootdir/keyrings for the Launchpad	#
+# m-grant-prg utils PPA.						#
+# This is designed to be run via the apt-key-scripts.sh script but can	#
+# be run manually.							#
 #									#
 # Syntax:	See usage().						#
 #									#
@@ -183,16 +184,16 @@ proc_CL "$@"
 
 # Launchpad
 sudo gpg --no-default-keyring \
-	--keyring @sysconfdir@/apt/trusted.gpg.d/tmp-keyring.gpg \
+	--keyring @datarootdir@/keyrings/tmp-keyring.gpg \
 	--keyserver keyserver.ubuntu.com \
 	--recv-keys d1946372ba01d17602a2ccd372ddd80b3669565c \
 		9F3747C4E4E55A576907F7038294A6371AB32B66
 std_cmd_err_handler $?
 sudo gpg --export --no-default-keyring \
-	--keyring @sysconfdir@/apt/trusted.gpg.d/tmp-keyring.gpg \
-	--output @sysconfdir@/apt/trusted.gpg.d/mgrant-utils-ppa-keyring.gpg
+	--keyring @datarootdir@/keyrings/tmp-keyring.gpg \
+	--output @datarootdir@/keyrings/mgrant-utils-ppa-keyring.gpg
 std_cmd_err_handler $?
-rm -f @sysconfdir@/apt/trusted.gpg.d/tmp-keyring.gpg
+rm -f @datarootdir@/keyrings/tmp-keyring.gpg
 std_cmd_err_handler $?
 
 script_exit 0
