@@ -8,7 +8,7 @@
 
 #########################################################################
 #									#
-# Author: Copyright (C) 2020-2023  Mark Grant				#
+# Author: Copyright (C) 2020-2023, 2026  Mark Grant			#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -49,13 +49,13 @@
 #########################################################################
 
 
-set -eo pipefail
+set -o pipefail
 
 
 ##################
 # Init variables #
 ##################
-readonly version=1.1.0				# Script version
+readonly version=1.2.0				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 verbose="q"
@@ -188,4 +188,7 @@ curl -fsSL"$verbose" https://archive.raspberrypi.org/debian/raspberrypi.gpg.key 
 	| gpg --dearmor \
 	| sudo tee @sysconfdir@/apt/trusted.gpg.d/raspberrypi-keyring.gpg \
 	> /dev/null
+std_cmd_err_handler $?
+
+script_exit 0
 
