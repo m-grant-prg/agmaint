@@ -14,7 +14,7 @@
 # SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
-# To add a hermes apt pgp key to @datarootdir@/keyrings directory and	#
+# To add a hermes apt pgp key to datarootdir/keyrings directory and	#
 # add a link to it with a gpg extension for the APTKEYRINGS variable in	#
 # pbuilder.								#
 # This is designed to be run via the apt-key-scripts.sh script but can	#
