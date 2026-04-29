@@ -14,9 +14,9 @@
 # SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
-# To add a raspberrypi.org apt key to a trusted apt keyring in the apt	#
-# directory. This is designed to be run via the apt-key-scripts.sh	#
-# script but can be run manually.					#
+# To add a raspberrypi.org apt key in datarootdir/keyrings		#
+# This is designed to be run via the apt-key-scripts.sh script but can	#
+# be run manually.							#
 #									#
 # Syntax:	See usage().						#
 #									#
@@ -186,8 +186,7 @@ proc_CL "$@"
 # rapberrypi.org/debian
 curl -fsSL"$verbose" https://archive.raspberrypi.org/debian/raspberrypi.gpg.key \
 	| gpg --dearmor \
-	| sudo tee @sysconfdir@/apt/trusted.gpg.d/raspberrypi-keyring.gpg \
-	> /dev/null
+	| sudo tee @datarootdir@/keyrings/raspberrypi-keyring.gpg > /dev/null
 std_cmd_err_handler $?
 
 script_exit 0
