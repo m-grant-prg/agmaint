@@ -14,8 +14,9 @@
 # SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
-# To add an apt keyring to datarootdir/keyrings for the Launchpad	#
-# m-grant-prg utils PPA.						#
+# To add an apt pgp keyring to datarootdir/keyrings for the Launchpad	#
+# m-grant-prg utils PPA and add a link to it with a gpg extension for	#
+# the APTKEYRINGS variable in pbuilder.					#
 # This is designed to be run via the apt-key-scripts.sh script but can	#
 # be run manually.							#
 #									#
@@ -59,6 +60,9 @@ set -o pipefail
 readonly version=1.2.0				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
+cwd=$(pwd) || exit $?
+readonly cwd
+
 
 #############
 # Functions #
@@ -99,6 +103,7 @@ output()
 # No return value.
 script_exit()
 {
+	cd "$cwd"
 	exit "$1"
 }
 
@@ -191,9 +196,13 @@ sudo gpg --no-default-keyring \
 std_cmd_err_handler $?
 sudo gpg --export --no-default-keyring \
 	--keyring @datarootdir@/keyrings/tmp-keyring.gpg \
-	--output @datarootdir@/keyrings/mgrant-utils-ppa-keyring.gpg
+	--output @datarootdir@/keyrings/mgrant-utils-ppa-keyring.pgp
 std_cmd_err_handler $?
 rm -f @datarootdir@/keyrings/tmp-keyring.gpg
+std_cmd_err_handler $?
+cd @datarootdir@/keyrings
+std_cmd_err_handler $?
+ln -s hermes-keyring.pgp hermes-keyring.gpg
 std_cmd_err_handler $?
 
 script_exit 0
