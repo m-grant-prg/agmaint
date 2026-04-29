@@ -187,7 +187,7 @@ sudo gpg --no-default-keyring \
 	--keyring @datarootdir@/keyrings/tmp-keyring.gpg \
 	--keyserver keyserver.ubuntu.com \
 	--recv-keys d1946372ba01d17602a2ccd372ddd80b3669565c \
-		9F3747C4E4E55A576907F7038294A6371AB32B66
+		75d5b0010422caa19fd3d40454880941b1bf7415
 std_cmd_err_handler $?
 sudo gpg --export --no-default-keyring \
 	--keyring @datarootdir@/keyrings/tmp-keyring.gpg \
