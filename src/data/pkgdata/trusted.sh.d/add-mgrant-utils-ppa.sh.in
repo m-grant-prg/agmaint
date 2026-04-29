@@ -62,6 +62,7 @@ readonly packageversion=@pkgversion@		# Package version
 
 cwd=$(pwd) || exit $?
 readonly cwd
+verbose=""
 
 
 #############
@@ -78,8 +79,7 @@ Usage is $0 {-h|-v|-V}
 Usage is $0 [OPTIONS]
 	[OPTIONS] are:-
 	-h or --help Displays usage information
-	-v or --verbose Ignored. Present only for consistent interface
-			to apt-key-scripts.sh
+	-v or --verbose A bit more output
 	-V or --version Displays version information
 EOF
 }
@@ -160,6 +160,7 @@ proc_CL()
 			script_exit 0
 			;;
 		-v|--verbose)
+			verbose="-v"
 			shift
 			;;
 		-V|--version)
@@ -202,13 +203,13 @@ sudo gpg --export --no-default-keyring \
 	--keyring @datarootdir@/keyrings/tmp-keyring.gpg \
 	--output @datarootdir@/keyrings/mgrant-utils-ppa-keyring.pgp
 std_cmd_err_handler $?
-rm -f @datarootdir@/keyrings/tmp-keyring.gpg
+rm -f $verbose @datarootdir@/keyrings/tmp-keyring.gpg
 std_cmd_err_handler $?
 # shellcheck disable=SC2164  # Do not warn about cd failures as we are already
 # testing for failures.
 cd @datarootdir@/keyrings
 std_cmd_err_handler $?
-ln -s hermes-keyring.pgp hermes-keyring.gpg
+ln $verbose -s mgrant-utils-ppa-keyring.pgp mgrant-utils-ppa-keyring.gpg
 std_cmd_err_handler $?
 
 script_exit 0
