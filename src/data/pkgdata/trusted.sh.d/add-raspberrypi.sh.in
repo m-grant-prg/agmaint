@@ -103,6 +103,8 @@ output()
 # No return value.
 script_exit()
 {
+	# shellcheck disable=SC2164  # Do not warn about cd failures as we are
+	# exiting anyway.
 	cd "$cwd"
 	exit "$1"
 }
@@ -193,6 +195,8 @@ curl -fsSL"$verbose" https://archive.raspberrypi.org/debian/raspberrypi.gpg.key 
 	| gpg --dearmor \
 	| sudo tee @datarootdir@/keyrings/raspberrypi-keyring.pgp > /dev/null
 std_cmd_err_handler $?
+# shellcheck disable=SC2164  # Do not warn about cd failures as we are already
+# testing for failures.
 cd @datarootdir@/keyrings
 std_cmd_err_handler $?
 ln -s raspberrypi-keyring.pgp raspberrypi-keyring.gpg
