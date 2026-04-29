@@ -8,7 +8,7 @@
 
 #########################################################################
 #									#
-# Author: Copyright (C) 2020-2023  Mark Grant				#
+# Author: Copyright (C) 2020-2023, 2026  Mark Grant			#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -49,13 +49,13 @@
 #########################################################################
 
 
-set -eo pipefail
+set -o pipefail
 
 
 ##################
 # Init variables #
 ##################
-readonly version=1.1.0				# Script version
+readonly version=1.2.0				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 
@@ -187,8 +187,13 @@ sudo gpg --no-default-keyring \
 	--keyserver keyserver.ubuntu.com \
 	--recv-keys d1946372ba01d17602a2ccd372ddd80b3669565c \
 		9F3747C4E4E55A576907F7038294A6371AB32B66
+std_cmd_err_handler $?
 sudo gpg --export --no-default-keyring \
 	--keyring @sysconfdir@/apt/trusted.gpg.d/tmp-keyring.gpg \
 	--output @sysconfdir@/apt/trusted.gpg.d/mgrant-utils-ppa-keyring.gpg
+std_cmd_err_handler $?
 rm -f @sysconfdir@/apt/trusted.gpg.d/tmp-keyring.gpg
+std_cmd_err_handler $?
+
+script_exit 0
 
