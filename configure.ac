@@ -50,7 +50,7 @@ AC_COPYRIGHT([Copyright (C) 2014-2026  Mark Grant
 	      This script is free to copy or distribute under the terms set out
 	      in the package license. See COPYING for details.])
 
-AC_REVISION([$Revision: 1.2.5 $])
+AC_REVISION([$Revision: 1.2.6 $])
 
 AC_PREREQ([2.69])
 
