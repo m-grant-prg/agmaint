@@ -14,9 +14,9 @@
 # SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
-# To add a raspberrypi.org apt pgp key in datarootdir/keyrings and add	#
-# a link to it with a gpg extension for the APTKEYRINGS variable in	#
-# pbuilder.								#
+# To add raspberrypi.org apt pgp keys in datarootdir/keyrings complete	#
+# with links to them with a gpg extension for the APTKEYRINGS variable	#
+# in pbuilder.								#
 # This is designed to be run via the apt-key-scripts.sh script but can	#
 # be run manually.							#
 #									#
@@ -60,8 +60,11 @@ set -o pipefail
 readonly version=1.2.0				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
+base_url="https://archive.raspberrypi.com/debian/pool/main/r/raspberrypi-archive-keyring"
 cwd=$(pwd) || exit $?
 readonly cwd
+list_url="https://archive.raspberrypi.com/debian/pool/main/r/raspberrypi-archive-keyring/"
+pattern="raspberrypi-archive-keyring_.*_all\.deb"
 verbose=""
 
 
@@ -192,16 +195,50 @@ proc_CL()
 
 proc_CL "$@"
 
-# rapberrypi.org/debian
-curl -fsSL $verbose https://archive.raspberrypi.org/debian/raspberrypi.gpg.key \
-	| gpg --dearmor \
-	| sudo tee @datarootdir@/keyrings/raspberrypi-keyring.pgp > /dev/null
+# rapberrypi.com
+# The key at archive.raspberrypi.com/debian/raspberrypi.gpg.key is obsolete
+# having last been modified in 2012. So the only source found for the key is in
+# the raspberrypi-archive-keyring deb package. This can be retrieved from the
+# deb pool @ list_url in the raspberrypi-archive-keyring directory. This
+# directory contains the keys in various formats and issued at different times.
+# The last one alphabetically will be the last one issued as can be seen from
+# pattern where the .* will match a section containing a date format such as
+# 2025.1.
+# Find last filename alphabetically
+filename=$(curl $verbose -s "$list_url" \
+	| grep -oP 'href="\K[^"]+' \
+	| grep -E "$pattern" \
+	| sort \
+	| tail -n1)
+std_cmd_err_handler $?
+
+if [ -z "$filename" ]; then
+	output "No match" 1
+	script_exit 66
+fi
+
+# Download the file
+tmpdir=$(mktemp --tmpdir -d "$filename"-XXXXXXXXXX)
 std_cmd_err_handler $?
 # shellcheck disable=SC2164  # Do not warn about cd failures as we are already
 # testing for failures.
-cd @datarootdir@/keyrings
+cd "$tmpdir"
 std_cmd_err_handler $?
-ln $verbose -s raspberrypi-keyring.pgp raspberrypi-keyring.gpg
+curl $verbose -O "$base_url/$filename"
+std_cmd_err_handler $?
+
+# Extract Debian package and copy keys
+dpkg -x "$filename" tmp
+std_cmd_err_handler $?
+cp $verbose -a tmp/usr/share/keyrings/* /usr/share/keyrings
+std_cmd_err_handler $?
+# shellcheck disable=SC2103  # Do not warn about subshell to avoid cd -. Prefer
+# this way.
+# shellcheck disable=SC2164  # Do not warn about cd failures as we are already
+# testing for failures.
+cd -
+std_cmd_err_handler $?
+rm -rf $verbose "$tmpdir"
 std_cmd_err_handler $?
 
 script_exit 0
