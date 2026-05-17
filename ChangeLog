@@ -1,3 +1,36 @@
+2026-05-17 v1.4.2 Mark Grant <m.grant.prg@gmail.com>
+	* v1.4.2-rc2
+	pkgdata: rpi: Extract key from new keyring package
+	v1.4.2-rc1
+	at: Bump configure version
+	pkgdata: obs: Add openSUSE Build Service key script
+	pkgdata: hermes: Prevent substitution in comment
+	pkgdata: rpi: Fix verbose functionality
+	pkgdata: rpi: Ignore unreachable shellcheck warning
+	pkgdata: rpi: Double quote to prevent globbing
+	pkgdata: rpi: Disable shellcheck 2164 false positive
+	pkgdata: rpi: Change key to pgp with a gpg link
+	pkgdata: rpi: Store the keyring in @datarootdir@/keyrings
+	pkgdata: rpi: Use standard error handler AOT set -e
+	pkgdata: ppa: Fix verbose functionality
+	pkgdata: ppa: Ignore unreachable shellcheck warning
+	pkgdata: ppa: Double quote to prevent globbing
+	pkgdata: ppa: Disable shellcheck 2164 false positive
+	pkgdata: ppa: Change key to pgp with a gpg link
+	pkgdata: ppa: Update to new ppa key
+	pkgdata: ppa: Store the keyring in @datarootdir@/keyrings
+	pkgdata: ppa: Use standard error handler AOT set -e
+	pkgdata: hermes: Fix verbose functionality
+	pkgdata: hermes: Ignore unreachable shellcheck warning
+	pkgdata: hermes: Double quote to prevent globbing
+	pkgdata: hermes: Declare and assign separately
+	pkgdata: hermes: Disable shellcheck 2164 false positive
+	pkgdata: hermes: Change key to pgp with a gpg link
+	pkgdata: hermes: Store the keyring in @datarootdir@/keyrings
+	pkgdata: hermes: Use standard error handler AOT set -e
+	at: Add distro info for Installation Directories
+Mark Grant (30):
+
 2026-03-06 v1.4.1 Mark Grant <m.grant.prg@gmail.com>
 	* at: Upgrade bootstrap.sh to v1.7.1
 	at: Remove old signature file before creating a new one
