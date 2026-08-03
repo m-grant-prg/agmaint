@@ -40,7 +40,7 @@ _apt_key_scripts_get_script_name_or_dir()
 	compopt -o filenames
 	# shellcheck disable=SC2207  # This is _the_ bash completion pattern,
 	# so leave it be.
-	COMPREPLY=( $(compgen $comp_action -- "$cur") )
+	COMPREPLY=( $(compgen "$comp_action" -- "$cur") )
 	for i in "${!COMPREPLY[@]}"; do
 		COMPREPLY[i]=$(realpath "${COMPREPLY[i]}")
 	done
