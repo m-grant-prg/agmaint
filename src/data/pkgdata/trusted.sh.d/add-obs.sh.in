@@ -165,8 +165,8 @@ proc_CL()
 			shift
 			;;
 		-V|--version)
-			printf "Script version %s\n" $version
-			printf "Package version %s\n" $packageversion
+			printf "Script version %s\n" "$version"
+			printf "Package version %s\n" "$packageversion"
 			shift
 			script_exit 0
 			;;
@@ -198,7 +198,7 @@ deb_rel=$(curl -s https://ftp.debian.org/debian/dists/stable/Release | awk -F': 
 std_cmd_err_handler $?
 
 # OBS
-curl -fsSL $verbose \
+curl -fsSL "$verbose" \
 	https://download.opensuse.org/repositories/home:m-grant-prg/Debian_"$deb_rel"/Release.key \
 	| gpg --dearmor \
 	| sudo tee @datarootdir@/keyrings/home_m-grant-prg.pgp 	> /dev/null
@@ -207,7 +207,7 @@ std_cmd_err_handler $?
 # testing for failures.
 cd @datarootdir@/keyrings
 std_cmd_err_handler $?
-ln $verbose -s home_m-grant-prg.pgp home_m-grant-prg.gpg
+ln "$verbose" -s home_m-grant-prg.pgp home_m-grant-prg.gpg
 std_cmd_err_handler $?
 
 script_exit 0

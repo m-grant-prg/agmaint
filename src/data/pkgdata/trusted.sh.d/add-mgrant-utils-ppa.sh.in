@@ -165,8 +165,8 @@ proc_CL()
 			shift
 			;;
 		-V|--version)
-			printf "Script version %s\n" $version
-			printf "Package version %s\n" $packageversion
+			printf "Script version %s\n" "$version"
+			printf "Package version %s\n" "$packageversion"
 			shift
 			script_exit 0
 			;;
@@ -204,13 +204,13 @@ sudo gpg --export --no-default-keyring \
 	--keyring @datarootdir@/keyrings/tmp-keyring.gpg \
 	--output @datarootdir@/keyrings/mgrant-utils-ppa-keyring.pgp
 std_cmd_err_handler $?
-rm -f $verbose @datarootdir@/keyrings/tmp-keyring.gpg
+rm -f "$verbose" @datarootdir@/keyrings/tmp-keyring.gpg
 std_cmd_err_handler $?
 # shellcheck disable=SC2164  # Do not warn about cd failures as we are already
 # testing for failures.
 cd @datarootdir@/keyrings
 std_cmd_err_handler $?
-ln $verbose -s mgrant-utils-ppa-keyring.pgp mgrant-utils-ppa-keyring.gpg
+ln "$verbose" -s mgrant-utils-ppa-keyring.pgp mgrant-utils-ppa-keyring.gpg
 std_cmd_err_handler $?
 
 script_exit 0

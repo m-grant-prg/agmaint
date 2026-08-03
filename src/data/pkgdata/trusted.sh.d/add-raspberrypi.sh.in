@@ -168,8 +168,8 @@ proc_CL()
 			shift
 			;;
 		-V|--version)
-			printf "Script version %s\n" $version
-			printf "Package version %s\n" $packageversion
+			printf "Script version %s\n" "$version"
+			printf "Package version %s\n" "$packageversion"
 			shift
 			script_exit 0
 			;;
@@ -206,7 +206,7 @@ proc_CL "$@"
 # pattern where the .* will match a section containing a date format such as
 # 2025.1.
 # Find last filename alphabetically
-filename=$(curl $verbose -s "$list_url" \
+filename=$(curl "$verbose" -s "$list_url" \
 	| grep -oP 'href="\K[^"]+' \
 	| grep -E "$pattern" \
 	| sort \
@@ -225,13 +225,13 @@ std_cmd_err_handler $?
 # testing for failures.
 cd "$tmpdir"
 std_cmd_err_handler $?
-curl $verbose -O "$base_url/$filename"
+curl "$verbose" -O "$base_url/$filename"
 std_cmd_err_handler $?
 
 # Extract Debian package and copy keys
 dpkg -x "$filename" tmp
 std_cmd_err_handler $?
-cp $verbose -a tmp/usr/share/keyrings/* /usr/share/keyrings
+cp "$verbose" -a tmp/usr/share/keyrings/* /usr/share/keyrings
 std_cmd_err_handler $?
 # shellcheck disable=SC2103  # Do not warn about subshell to avoid cd -. Prefer
 # this way.
@@ -239,7 +239,7 @@ std_cmd_err_handler $?
 # testing for failures.
 cd -
 std_cmd_err_handler $?
-rm -rf $verbose "$tmpdir"
+rm -rf "$verbose" "$tmpdir"
 std_cmd_err_handler $?
 
 script_exit 0

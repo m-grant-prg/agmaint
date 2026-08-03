@@ -165,8 +165,8 @@ proc_CL()
 			shift
 			;;
 		-V|--version)
-			printf "Script version %s\n" $version
-			printf "Package version %s\n" $packageversion
+			printf "Script version %s\n" "$version"
+			printf "Package version %s\n" "$packageversion"
 			shift
 			script_exit 0
 			;;
@@ -194,7 +194,7 @@ proc_CL()
 proc_CL "$@"
 
 # Hermes
-curl -fsSL $verbose http://hermes.mgent.home/aptrepos/hermes.gpg \
+curl -fsSL "$verbose" http://hermes.mgent.home/aptrepos/hermes.gpg \
 	| gpg --dearmor \
 	| sudo tee @datarootdir@/keyrings/hermes-keyring.pgp > /dev/null
 std_cmd_err_handler $?
@@ -202,7 +202,7 @@ std_cmd_err_handler $?
 # testing for failures.
 cd @datarootdir@/keyrings
 std_cmd_err_handler $?
-ln $verbose -s hermes-keyring.pgp hermes-keyring.gpg
+ln "$verbose" -s hermes-keyring.pgp hermes-keyring.gpg
 std_cmd_err_handler $?
 
 script_exit 0
