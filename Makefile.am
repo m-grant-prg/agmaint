@@ -22,6 +22,8 @@ SUBDIRS += src/data/pkgdata/trusted.sh.d
 SUBDIRS += src/data/sysconf
 SUBDIRS += src/man/8
 SUBDIRS += src/prg/bash
+SUBDIRS += src/prg/tests/shellcheck
+SUBDIRS += src/prg/run-tests
 
 
 doc_DATA = AUTHORS ChangeLog COPYING NEWS README

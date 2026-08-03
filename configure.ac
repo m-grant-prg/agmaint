@@ -335,6 +335,8 @@ AC_MSG_NOTICE(processing additional checks and variables)
 #					${libexecdir}/${PACKAGE}
 #
 AC_SUBST([edit], ["$SED \
+		-e 's|@abstopsrcdir[@]|\$(abs_top_srcdir)|g' \
+		-e 's|@abstopbuilddir[@]|\$(abs_top_builddir)|g' \
 		-e 's|@bashlocation[@]|\$(BASH)|g' \
 		-e 's|@pkgtarname[@]|\$(pkgtarname)|g' \
 		-e 's|@pkgversion[@]|\$(pkgversion)|g' \
@@ -388,7 +390,9 @@ AC_CONFIG_FILES([Makefile
 		src/data/pkgdata/trusted.sh.d/Makefile
 		src/data/sysconf/Makefile
 		src/man/8/Makefile
-		src/prg/bash/Makefile])
+		src/prg/bash/Makefile
+		src/prg/tests/shellcheck/Makefile
+		src/prg/run-tests/Makefile])
 
 AC_OUTPUT
 
