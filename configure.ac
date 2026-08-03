@@ -50,7 +50,7 @@ AC_COPYRIGHT([Copyright (C) 2014-2026  Mark Grant
 	      This script is free to copy or distribute under the terms set out
 	      in the package license. See COPYING for details.])
 
-AC_REVISION([$Revision: 1.2.6 $])
+AC_REVISION([$Revision: 1.2.7 $])
 
 AC_PREREQ([2.69])
 
@@ -334,7 +334,7 @@ AC_MSG_NOTICE(processing additional checks and variables)
 #	pkglibexecdir		Package-specific Executables run by other programs
 #					${libexecdir}/${PACKAGE}
 #
-AC_SUBST([edit], ["sed \
+AC_SUBST([edit], ["$SED \
 		-e 's|@bashlocation[@]|\$(BASH)|g' \
 		-e 's|@pkgtarname[@]|\$(pkgtarname)|g' \
 		-e 's|@pkgversion[@]|\$(pkgversion)|g' \
