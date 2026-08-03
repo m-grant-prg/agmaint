@@ -208,8 +208,8 @@ proc_CL()
 			;;
 		-V|--version)
 			if $process ; then
-				printf "Script version %s\n" $version
-				printf "Package version %s\n" $packageversion
+				printf "Script version %s\n" "$version"
+				printf "Package version %s\n" "$packageversion"
 			fi
 			shift
 			;;
@@ -304,7 +304,7 @@ install_examples()
 	local ex_script_list
 	local script
 
-	ex_script_list=$(ls $exampleloc)
+	ex_script_list=$(ls "$exampleloc")
 	for script in $ex_script_list; do
 		install_script "$exampleloc/$script" "${verbose[@]}"
 	done

@@ -149,8 +149,8 @@ proc_CL()
 			script_exit 0
 			;;
 		-V|--version)
-			printf "Script version %s\n" $version
-			printf "Package version %s\n" $packageversion
+			printf "Script version %s\n" "$version"
+			printf "Package version %s\n" "$packageversion"
 			shift
 			script_exit 0
 			;;
@@ -181,28 +181,28 @@ proc_CL "$@"
 
 apt-get "${cli_extra_args[@]}" upgrade
 status=$?
-output "apt-get upgrade completed with exit code: "$status $status
-std_cmd_err_handler $status
+output "apt-get upgrade completed with exit code: $status" "$status"
+std_cmd_err_handler "$status"
 
 apt-get "${cli_extra_args[@]}" autoclean
 status=$?
-output "apt-get autoclean completed with exit code: "$status $status
-std_cmd_err_handler $status
+output "apt-get autoclean completed with exit code: $status" "$status"
+std_cmd_err_handler "$status"
 
 apt-get "${cli_extra_args[@]}" clean
 status=$?
-output "apt-get clean completed with exit code: "$status $status
-std_cmd_err_handler $status
+output "apt-get clean completed with exit code: $status" "$status"
+std_cmd_err_handler "$status"
 
 apt-get "${cli_extra_args[@]}" check
 status=$?
-output "apt-get check completed with exit code: "$status $status
-std_cmd_err_handler $status
+output "apt-get check completed with exit code: $status" "$status"
+std_cmd_err_handler "$status"
 
 apt-get "${cli_extra_args[@]}" autoremove
 status=$?
-output "apt-get autoremove completed with exit code: "$status $status
-std_cmd_err_handler $status
+output "apt-get autoremove completed with exit code: $status" "$status"
+std_cmd_err_handler "$status"
 
 script_exit 0
 
