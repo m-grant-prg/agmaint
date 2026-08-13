@@ -1,4 +1,4 @@
-#! @bashlocation@
+#! @envlocation@ bash
 #########################################################################
 #									#
 #	add-raspberrypi.sh is automatically generated,			#
@@ -57,7 +57,7 @@ set -o pipefail
 ##################
 # Init variables #
 ##################
-readonly version=1.2.1				# Script version
+readonly version=1.2.2				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 base_url="https://archive.raspberrypi.com/debian/pool/main/r/raspberrypi-archive-keyring"

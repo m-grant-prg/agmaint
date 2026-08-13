@@ -1,4 +1,4 @@
-#! @bashlocation@
+#! @envlocation@ bash
 #########################################################################
 #									#
 #	add-obs.sh is automatically generated,				#
@@ -57,7 +57,7 @@ set -o pipefail
 ##################
 # Init variables #
 ##################
-readonly version=1.0.1				# Script version
+readonly version=1.0.2				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 cwd=$(pwd) || exit $?

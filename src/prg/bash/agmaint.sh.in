@@ -1,4 +1,4 @@
-#! @bashlocation@
+#! @envlocation@ bash
 #########################################################################
 #									#
 #	agmaint is automatically generated,				#
@@ -50,7 +50,7 @@
 ##################
 # Init variables #
 ##################
-readonly version=1.2.2				# Script version
+readonly version=1.2.3				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 cli_extra_args=()
