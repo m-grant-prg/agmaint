@@ -1,3 +1,29 @@
+2026-09-13 v1.4.3 Mark Grant <m.grant.prg@gmail.com>
+	* build(deps): bump actions/checkout from 6 to 7
+dependabot[bot] (1):
+
+	at: bash: Remove apt-get clean
+	tests: Upgrade shellcheck-inline test to v1.0.2
+	at: Order project specific substitutions alphabetically
+	tests: Move tree-wide tests to appropriate level in tree
+	at: bash: tests: trusted.sh.d: Use @envlocation@ bash for bash shebang
+	at: tests: Upgrade shellcheck tests to v1.0.1
+	at: Upgrade bootstrap.sh to v1.7.4
+	actions: Upload test logs on failure
+	lxcu: Add shellcheck to lxcu install lists
+	at: Add check for shellcheck
+	bash-comp: Fix shellcheck prefer double quotes warning
+	bash: Fix shellcheck prefer double quotes warning
+	pkgdata: Fix shellcheck prefer double quotes warning
+	bash: Fix shellcheck warning trap function never invoked
+	pkgdata: Fix shellcheck warning trap function never invoked
+	tests: Add shellcheck test v1.0.0
+	at: Use AT supplied $SED AOT hard coding sed
+	at: Upgrade bootstrap.sh to v1.7.3
+	Merge pull request #6 from m-grant-prg/dependabot/github_actions/tip/actions/checkout-7
+	at: Upgrade bootstrap.sh to v1.7.2
+Mark Grant (20):
+
 2026-05-17 v1.4.2 Mark Grant <m.grant.prg@gmail.com>
 	* v1.4.2-rc2
 	pkgdata: rpi: Extract key from new keyring package
