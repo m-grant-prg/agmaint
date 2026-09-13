@@ -50,7 +50,7 @@
 ##################
 # Init variables #
 ##################
-readonly version=1.2.3				# Script version
+readonly version=1.2.4				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 cli_extra_args=()
@@ -187,11 +187,6 @@ std_cmd_err_handler "$status"
 apt-get "${cli_extra_args[@]}" autoclean
 status=$?
 output "apt-get autoclean completed with exit code: $status" "$status"
-std_cmd_err_handler "$status"
-
-apt-get "${cli_extra_args[@]}" clean
-status=$?
-output "apt-get clean completed with exit code: $status" "$status"
 std_cmd_err_handler "$status"
 
 apt-get "${cli_extra_args[@]}" check
