@@ -1,3 +1,19 @@
+2026-09-14 v1.3.7 Mark Grant <m.grant.prg@gmail.com>
+	* build(deps): bump actions/checkout from 6 to 7
+	build(deps): bump actions/checkout from 5 to 6
+	build(deps): bump actions/checkout from 4 to 5
+dependabot[bot] (3):
+
+	at: Update Copyright for 2026
+	at: bash: Remove apt-get clean
+	Merge pull request #7 from m-grant-prg/dependabot/github_actions/v1.3.y-tip/actions/checkout-7
+	Merge pull request #4 from m-grant-prg/dependabot/github_actions/v1.3.y-tip/actions/checkout-6
+	Merge pull request #2 from m-grant-prg/dependabot/github_actions/v1.3.y-tip/actions/checkout-5
+	actions: Set dependabot to target stable and old stable branches
+	at: Re-order program checks alphabetically
+	actions: Fix trivial whitespace formatting error
+Mark Grant (8):
+
 2025-01-05 v1.3.6 Mark Grant <m.grant.prg@gmail.com>
 	* at: Update Copyright for 2025
 	docs: Add apt-get clean to README
